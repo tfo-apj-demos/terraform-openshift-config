@@ -12,6 +12,14 @@ pg_subscription = file("${path.module}/manifests/postgres-subscription.yaml")
 }
 
 # create kubernetes namespace
+resource "kubernetes_namespace" "tfe" {
+  metadata {
+    name = "tfe"
+  }
+}
+
+
+# create kubernetes namespace
 resource "kubernetes_namespace" "pg-operator" {
   metadata {
     name = "postgres-operator"
