@@ -26,7 +26,6 @@ resource "kubernetes_namespace" "tfe-agents" {
 
 
 resource "kubernetes_manifest" "pg-operator" {
-  depends_on = [resource.kubernetes_namespace.pg-operator]
   manifest = provider::kubernetes::manifest_decode(local.pg_subscription)
 }
 
