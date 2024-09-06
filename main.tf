@@ -15,18 +15,18 @@ metadata:
 EOT
 
 #get files in directory ${path.module}/manifests
-manifests = fileset("${path.module}/manifests", "**/*.yaml")
+namespace = yamldecode(file("${path.module}/manifests/postgres-operator-ns.yaml")
 
 }
 
 
 
 
-resource "kubernetes_manifest" "namespace" {
-  manifest = provider::kubernetes::manifest_decode( yamldecode( file("${path.module}/manifests/postgres-operator-ns.yaml") ))
-}
+# resource "kubernetes_manifest" "namespace" {
+#   manifest = provider::kubernetes::manifest_decode(  ))
+# }
 
 output "local-manifest" {
-  value = local.manifests
+  value = local.namespace
   
 }
