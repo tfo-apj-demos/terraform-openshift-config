@@ -30,6 +30,4 @@ spec:
     installPlanApproval: Automatic
 EOF
 
-kubectl create namespace postgres-operator
-
-kubectl apply -f subscription.yaml -n postgres-operator
+kubectl apply -f subscription.yaml -n openshift-operators
