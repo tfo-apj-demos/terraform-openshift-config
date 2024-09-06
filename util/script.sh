@@ -26,7 +26,10 @@ spec:
     name: crunchy-postgres-operator
     source: certified-operators
     sourceNamespace: openshift-marketplace
+    startingCSV: postgresoperator.v5.6.1
+    installPlanApproval: Automatic
 EOF
 
 kubectl create namespace postgres-operator
 
+kubectl apply -f subscription.yaml -n postgres-operator
