@@ -13,10 +13,19 @@ apiVersion: v1
 metadata:
   name: postgres-operator
 EOT
+
+#get files in directory ${path.module}/manifests
+manifests = fileset("${path.module}/manifests", "**/*.yaml")
+
 }
 
 
 
 resource "kubernetes_manifest" "namespace" {
   manifest = provider::kubernetes::manifest_decode(local.manifest)
+}
+
+output "local-manifest" {
+  value = local.manifests
+  
 }
