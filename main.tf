@@ -21,8 +21,9 @@ manifests = fileset("${path.module}/manifests", "**/*.yaml")
 
 
 
+
 resource "kubernetes_manifest" "namespace" {
-  manifest = provider::kubernetes::manifest_decode(local.manifest)
+  manifest = provider::kubernetes::manifest_decode(yamldecode(fileset("${path.module}/manifests/postgres-operator-ns.yaml")))
 }
 
 output "local-manifest" {
