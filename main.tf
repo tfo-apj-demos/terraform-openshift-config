@@ -6,23 +6,20 @@ output "all-ns" {
 
 
 locals {
-  manifest = <<EOT
----
-kind: Namespace
-apiVersion: v1
-metadata:
-  name: postgres-operator
-EOT
 
-#get files in directory ${path.module}/manifests
-namespace = file("${path.module}/manifests/postgres-operator-ns.yaml")
+pg_subscription = file("${path.module}/manifests/postgres-subscription.yaml")
+
 }
 
-resource "kubernetes_manifest" "namespace" {
-  manifest = provider::kubernetes::manifest_decode(local.manifest)
+# create kubernetes namespace
+resource "kubernetes_namespace" "pg-operator" {
+  metadata {
+    name = "postgres-operator"
+  }
 }
 
-output "local-manifest" {
-  value = local.namespace
-  
+resource "kubernetes_manifest" "pg-operator" {
+  depends_on = [resource.kubernetes_namespace.pg-operator]
+  manifest = provider::kubernetes::manifest_decode(local.pg_subscription)
 }
+
