@@ -30,7 +30,7 @@ resource "kubernetes_manifest" "pg-operator" {
 }
 
 resource "kubernetes_manifest" "redis-operator" {
-  manifest = provider::kubernetes::manifest_decode(local.pg_subscription)
+  manifest = provider::kubernetes::manifest_decode(local.redis_subscription)
 }
 
 
