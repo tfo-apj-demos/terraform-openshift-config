@@ -18,13 +18,12 @@ resource "kubernetes_namespace" "tfe" {
   }
 }
 
-
-# create kubernetes namespace
-resource "kubernetes_namespace" "pg-operator" {
+resource "kubernetes_namespace" "tfe-agents" {
   metadata {
-    name = "postgres-operator"
+    name = "tfe-agents"
   }
 }
+
 
 resource "kubernetes_manifest" "pg-operator" {
   depends_on = [resource.kubernetes_namespace.pg-operator]
