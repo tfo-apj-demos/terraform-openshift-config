@@ -1,0 +1,5 @@
+
+provider "kubernetes" {
+  # Configuration options
+  
+}
