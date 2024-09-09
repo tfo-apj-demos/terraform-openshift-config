@@ -36,3 +36,5 @@ spec:
   old_postgres_configuration_secret: automationcontroller-postgres-configuration
   secret_key_secret: automationcontroller-secret-key
   broadcast_websocket_secret: automationcontroller-broadcast-websocket
+  service_type: ClusterIP
+  ee_pull_credentials_secret: djoo.image.pull.secret
