@@ -8,16 +8,7 @@ spec:
     repository: registry.connect.redhat.com/redislabs/redis-enterprise-operator
   persistentSpec:
     enabled: true
-    volumeClaimTemplates:
-      - metadata:
-          name: redis-enterprise-storage
-        spec:
-          accessModes:
-            - ReadWriteMany  # Depending on your access mode requirements
-          resources:
-            requests:
-              storage: 20Gi  # Specify the size of storage
-          storageClassName: ocs-storagecluster-cephfs  # Your storage class
+    storageClassName: ocs-storagecluster-cephfs  # Your storage class
   redisEnterpriseImageSpec:
     imagePullPolicy: IfNotPresent
     repository: registry.connect.redhat.com/redislabs/redis-enterprise
