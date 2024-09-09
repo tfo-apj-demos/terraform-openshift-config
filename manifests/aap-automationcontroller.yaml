@@ -31,3 +31,8 @@ spec:
   metrics_utility_cronjob_gather_schedule: '@hourly'
   hostname: automationcontroller
   postgres_storage_class: ocs-storagecluster-ceph-rgw
+  admin_password_secret: automationcontroller-admin-password
+  postgres_configuration_secret: automationcontroller-postgres-configuration
+  old_postgres_configuration_secret: automationcontroller-postgres-configuration
+  secret_key_secret: automationcontroller-secret-key
+  broadcast_websocket_secret: automationcontroller-broadcast-websocket
