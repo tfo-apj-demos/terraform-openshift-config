@@ -30,7 +30,7 @@ spec:
   loadbalancer_protocol: http
   metrics_utility_cronjob_gather_schedule: '@hourly'
   hostname: automationcontroller
-  postgres_storage_class: ocs-storagecluster-ceph-rgw
+  postgres_storage_class: ocs-storagecluster-cephfs
   admin_password_secret: automationcontroller-admin-password
   postgres_configuration_secret: automationcontroller-postgres-configuration
   old_postgres_configuration_secret: automationcontroller-postgres-configuration
