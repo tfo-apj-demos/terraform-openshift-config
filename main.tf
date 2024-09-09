@@ -5,13 +5,7 @@ output "all-ns" {
 }
 
 
-locals {
-pg_subscription = file("${path.module}/manifests/postgres-subscription.yaml")
-pg_cluster = file("${path.module}/manifests/postgres-cluster.yaml")
-redis_operatorgroup = file("${path.module}/manifests/redis-operatorgroup.yaml")
-redis_subscription = file("${path.module}/manifests/redis-subscription.yaml")
-redis_cluster = file("${path.module}/manifests/redis-cluster.yaml")
-}
+
 
 # create kubernetes namespace
 resource "kubernetes_namespace" "tfe" {
@@ -47,6 +41,11 @@ resource "kubernetes_manifest" "redis-operator" {
 resource "kubernetes_manifest" "redis-cluster" {
   manifest = provider::kubernetes::manifest_decode(local.redis_cluster)
 }
+
+
+
+
+
 
 
 # apiVersion: v1
