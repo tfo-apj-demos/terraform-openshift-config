@@ -10,7 +10,7 @@ pg_subscription = file("${path.module}/manifests/postgres-subscription.yaml")
 pg_cluster = file("${path.module}/manifests/postgres-cluster.yaml")
 redis_operatorgroup = file("${path.module}/manifests/redis-operatorgroup.yaml")
 redis_subscription = file("${path.module}/manifests/redis-subscription.yaml")
-
+redis_cluster = file("${path.module}/manifests/redis-cluster.yaml")
 }
 
 # create kubernetes namespace
@@ -44,4 +44,7 @@ resource "kubernetes_manifest" "redis-operator" {
   manifest = provider::kubernetes::manifest_decode(local.redis_subscription)
 }
 
+resource "kubernetes_manifest" "redis-cluster" {
+  manifest = provider::kubernetes::manifest_decode(local.redis_cluster)
+}
 
