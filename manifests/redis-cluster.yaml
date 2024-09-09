@@ -8,7 +8,6 @@ spec:
     repository: registry.connect.redhat.com/redislabs/redis-enterprise-operator
   persistentSpec:
     enabled: true
-    storageClassName: ocs-storagecluster-cephfs  # Your storage class
   redisEnterpriseImageSpec:
     imagePullPolicy: IfNotPresent
     repository: registry.connect.redhat.com/redislabs/redis-enterprise
