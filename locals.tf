@@ -8,5 +8,5 @@ redis_cluster = file("${path.module}/manifests/redis-cluster.yaml")
 #ansible
 aap_subscription = file("${path.module}/manifests/ansible-app-subscription.yaml")
 aap_operatorgroup = file("${path.module}/manifests/ansible-operatorgroup.yaml")
-
+aap_automationcontroller = file("${path.module}/manifests/aap-automationcontroller")
 }
