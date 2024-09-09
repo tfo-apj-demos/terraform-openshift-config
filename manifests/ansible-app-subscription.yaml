@@ -4,7 +4,7 @@ metadata:
   name: ansible-automation-platform-operator
   namespace: ansible
 spec:   
-    channel: stable-2.4-cluster-scopeds
+    channel: stable-2.4-cluster-scoped
     name: ansible-automation-platform-operator
     source: openshift-marketplace
     sourceNamespace: openshift-marketplace
