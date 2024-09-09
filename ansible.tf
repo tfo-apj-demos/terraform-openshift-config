@@ -1,8 +1,8 @@
-resource "kubernetes_namespace" "aap" {
-  metadata {
-    name = "ansible"
-  }
-}
+# resource "kubernetes_namespace" "aap" {
+#   metadata {
+#     name = "ansible"
+#   }
+# }
 
 
 # resource "kubernetes_manifest" "aap-operatorgroup" {
