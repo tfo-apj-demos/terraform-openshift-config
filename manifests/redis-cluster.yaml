@@ -9,7 +9,6 @@ spec:
   persistentSpec:
     enabled: true
     storageClassName: ocs-storagecluster-cephfs
-    volumeSize: 23Gi
   redisEnterpriseImageSpec:
     imagePullPolicy: IfNotPresent
     repository: registry.connect.redhat.com/redislabs/redis-enterprise
