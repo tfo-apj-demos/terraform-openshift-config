@@ -32,4 +32,5 @@ spec:
   automation_server_url: 'https://aap-automationcontroller-aap.apps.openshift-01.hashicorp.local/'
   hostname: aapeda
   service_type: ClusterIP
-  postgres_storage_class: ocs-storagecluster-cephfs
+  database:
+    postgres_storage_class: ocs-storagecluster-cephfs
