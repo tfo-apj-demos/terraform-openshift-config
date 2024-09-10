@@ -8,7 +8,9 @@ spec:
   gunicorn_content_workers: 2
   gunicorn_api_workers: 2
   route_tls_termination_mechanism: Edge
+  hostname: hub
   ingress_type: Route
+  route_host: hub-aap.apps.openshift-01.hashicorp.local
   loadbalancer_port: 80
   no_log: true
   file_storage_size: 100Gi

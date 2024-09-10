@@ -31,6 +31,7 @@ spec:
     replicas: 2
   automation_server_url: 'https://controller-aap.apps.openshift-01.hashicorp.local/'
   hostname: eda
+  route_host: eda-aap.apps.openshift-01.hashicorp.local
   service_type: ClusterIP
   database:
     postgres_storage_class: ocs-storagecluster-cephfs
