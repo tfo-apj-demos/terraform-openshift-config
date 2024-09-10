@@ -1,7 +1,7 @@
 apiVersion: eda.ansible.com/v1alpha1
 kind: EDA
 metadata:
-  name: aap-eda
+  name: eda
   namespace: aap
 spec:
   route_tls_termination_mechanism: Edge
@@ -30,7 +30,7 @@ spec:
   worker:
     replicas: 2
   automation_server_url: 'https://aap-controller-aap.apps.openshift-01.hashicorp.local/'
-  hostname: aapeda
+  hostname: eda
   service_type: ClusterIP
   database:
     postgres_storage_class: ocs-storagecluster-cephfs

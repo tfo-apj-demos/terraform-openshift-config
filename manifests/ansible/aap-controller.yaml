@@ -1,7 +1,7 @@
 apiVersion: automationcontroller.ansible.com/v1beta1
 kind: AutomationController
 metadata:
-  name: aap-automationcontroller
+  name: controller
   namespace: aap
   labels:
     app.kubernetes.io/component: automationcontroller
