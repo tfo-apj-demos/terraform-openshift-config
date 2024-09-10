@@ -40,6 +40,9 @@ resource "kubernetes_manifest" "redis-operator" {
 
 resource "kubernetes_manifest" "redis-cluster" {
   manifest = provider::kubernetes::manifest_decode(local.redis_cluster)
+  field_manager {
+    froforce_conflicts = true
+  }
 }
 
 
