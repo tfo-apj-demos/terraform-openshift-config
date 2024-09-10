@@ -45,18 +45,6 @@ resource "kubernetes_manifest" "redis-cluster" {
   }
 }
 
-
-
-
-
-
-
-# apiVersion: v1
-# kind: Secret
-# metadata:
-#   name: tfe-pguser-tfeadmin
-#   labels:
-#     postgres-operator.crunchydata.com/cluster: tfe
-#     postgres-operator.crunchydata.com/pguser: tfeadmin
-# stringData:
-#   password: "${var.pg_password}"
+resource "kubernetes_manifest" "aap-eda" {
+  manifest = provider::kubernetes::manifest_decode(local.aap_eda)
+}
