@@ -26,3 +26,9 @@ depends_on = [ kubernetes_namespace.aap ]
 resource "kubernetes_manifest" "aap-eda" {
   manifest = provider::kubernetes::manifest_decode(local.aap_eda)
 }
+
+
+# Ansible Automation Hub
+resource "kubernetes_manifest" "aap-hub" {
+  manifest = provider::kubernetes::manifest_decode(local.aap_hub)
+}
