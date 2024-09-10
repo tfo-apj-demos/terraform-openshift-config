@@ -29,7 +29,7 @@ spec:
     replicas: 2
   worker:
     replicas: 2
-  automation_server_url: 'https://aap-controller-aap.apps.openshift-01.hashicorp.local/'
+  automation_server_url: 'https://controller-aap.apps.openshift-01.hashicorp.local/'
   hostname: eda
   service_type: ClusterIP
   database:
