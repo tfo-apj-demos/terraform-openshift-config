@@ -43,6 +43,7 @@ spec:
   redis:
     log_level: INFO
     replicas: 1
+    redis_storage_class: ocs-storagecluster-cephfs
   loadbalancer_protocol: http
   resource_manager:
     replicas: 1

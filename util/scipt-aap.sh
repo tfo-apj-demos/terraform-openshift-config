@@ -13,3 +13,8 @@ oc get packagemanifests ansible-automation-platform-operator -o jsonpath={.statu
 
 oc get packagemanifests ansible-automation-platform-operator -o jsonpath={.status.catalogSourceNamespace}
 #openshift-marketplace
+
+
+
+#get crd
+ oc get crd automationhubs.automationhub.ansible.com -o yaml > hub.txt 
