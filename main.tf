@@ -1,11 +1,3 @@
-data "kubernetes_all_namespaces" "allns" {}
-
-output "all-ns" {
-  value = data.kubernetes_all_namespaces.allns.namespaces
-}
-
-
-
 
 # create kubernetes namespace
 resource "kubernetes_namespace" "tfe" {
@@ -45,6 +37,3 @@ resource "kubernetes_manifest" "redis-cluster" {
   }
 }
 
-resource "kubernetes_manifest" "aap-eda" {
-  manifest = provider::kubernetes::manifest_decode(local.aap_eda)
-}

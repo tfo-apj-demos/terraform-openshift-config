@@ -1,4 +1,5 @@
 locals {
+# TFE
 pg_subscription = file("${path.module}/manifests/tfe/postgres-subscription.yaml")
 pg_cluster = file("${path.module}/manifests/tfe/postgres-cluster.yaml")
 redis_operatorgroup = file("${path.module}/manifests/tfe/redis-operatorgroup.yaml")
