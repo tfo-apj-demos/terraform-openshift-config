@@ -28,7 +28,7 @@ spec:
   ee_pull_credentials_secret: djoo.image.pull.secret
   postgres_keepalives: true
   metrics_utility_enabled: false
-  hostname: aapcontroller
+  hostname: controller
   postgres_keepalives_interval: 5
   ipv6_disabled: false
   projects_storage_access_mode: ReadWriteMany

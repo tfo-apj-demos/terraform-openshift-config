@@ -6,9 +6,12 @@ redis_operatorgroup = file("${path.module}/manifests/tfe/redis-operatorgroup.yam
 redis_subscription = file("${path.module}/manifests/tde/redis-subscription.yaml")
 redis_cluster = file("${path.module}/manifests/tfe/redis-cluster.yaml")
 
-#ansible
+#ansibl automation platform operator
 aap_subscription = file("${path.module}/manifests/ansible/ansible-app-subscription.yaml")
 aap_operatorgroup = file("${path.module}/manifests/ansible/ansible-operatorgroup.yaml")
-aap_automationcontroller = file("${path.module}/manifests/ansible/aap-automationcontroller.yaml")
+
+# Ansible Automation Platform
+aap_controller = file("${path.module}/manifests/ansible/aap-controller.yaml")
+aap_hub= file("${path.module}/manifests/ansible/aap-hub.yaml")
 aap_eda = file("${path.module}/manifests/ansible/aap-eda.yaml")
 }
