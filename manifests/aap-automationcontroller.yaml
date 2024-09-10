@@ -1,8 +1,11 @@
 apiVersion: automationcontroller.ansible.com/v1beta1
 kind: AutomationController
 metadata:
-  name: automationcontroller
-  namespace: aap
+  labels:
+    app.kubernetes.io/component: automationcontroller
+    app.kubernetes.io/managed-by: automationcontroller-operator
+    app.kubernetes.io/operator-version: ''
+    app.kubernetes.io/part-of: aapcontroller
 spec:
   postgres_keepalives_count: 5
   postgres_keepalives_idle: 5
@@ -10,15 +13,20 @@ spec:
   create_preload_data: true
   route_tls_termination_mechanism: Edge
   garbage_collect_secrets: false
+  service_type: ClusterIP
   ingress_type: Route
   loadbalancer_port: 80
-  no_log: false
+  no_log: true
   image_pull_policy: IfNotPresent
+  loadbalancer_ip: ''
   projects_storage_size: 8Gi
   auto_upgrade: true
   task_privileged: false
+  postgres_storage_class: ocs-storagecluster-cephfs
+  ee_pull_credentials_secret: djoo.image.pull.secret
   postgres_keepalives: true
   metrics_utility_enabled: false
+  hostname: aapcontroller
   postgres_keepalives_interval: 5
   ipv6_disabled: false
   projects_storage_access_mode: ReadWriteMany
@@ -29,12 +37,3 @@ spec:
   admin_user: admin
   loadbalancer_protocol: http
   metrics_utility_cronjob_gather_schedule: '@hourly'
-  hostname: automationcontroller
-  postgres_storage_class: ocs-storagecluster-cephfs
-  admin_password_secret: automationcontroller-admin-password
-  postgres_configuration_secret: automationcontroller-postgres-configuration
-  old_postgres_configuration_secret: automationcontroller-postgres-configuration
-  secret_key_secret: automationcontroller-secret-key
-  broadcast_websocket_secret: automationcontroller-broadcast-websocket
-  service_type: ClusterIP
-  ee_pull_credentials_secret: djoo.image.pull.secret
