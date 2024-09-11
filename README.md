@@ -1,1 +1,1 @@
-# terraform-openshift-operator-postgres
+# terraform-openshift-config
