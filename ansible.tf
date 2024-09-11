@@ -18,17 +18,19 @@ depends_on = [ kubernetes_namespace.aap ]
 
 # Ansible Controller resource
 resource "kubernetes_manifest" "aap-controller" {
-depends_on = [ kubernetes_namespace.aap ]
+depends_on = [ kubernetes_manifest.aap-subscription ]
   manifest = provider::kubernetes::manifest_decode(local.aap_controller)
 }
 
 # Ansible EDA resource
 resource "kubernetes_manifest" "aap-eda" {
+depends_on = [ kubernetes_manifest.aap-subscription ]
   manifest = provider::kubernetes::manifest_decode(local.aap_eda)
 }
 
 
 # Ansible Automation Hub
 resource "kubernetes_manifest" "aap-hub" {
+depends_on = [ kubernetes_manifest.aap-subscription ]
   manifest = provider::kubernetes::manifest_decode(local.aap_hub)
 }
