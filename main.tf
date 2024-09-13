@@ -48,7 +48,7 @@ resource "kubernetes_manifest" "redis-cluster" {
 
 
 
-resource "kubernetes_manifest" "redis-operatorgroup" {
+resource "kubernetes_manifest" "s3bucket-tfeapp" {
   depends_on = [ kubernetes_namespace.tfe ]
   manifest = provider::kubernetes::manifest_decode(local.tfe_s3bucket_tfeapp)
 }
