@@ -6,6 +6,9 @@ redis_operatorgroup = file("${path.module}/manifests/tfe/redis-operatorgroup.yam
 redis_subscription = file("${path.module}/manifests/tfe/redis-subscription.yaml")
 redis_cluster = file("${path.module}/manifests/tfe/redis-cluster.yaml")
 
+# TFE S3 Bucket
+tfe_s3bucket_tfeapp = file("${path.module}/manifests/tfe/s3bucket-tfeapp.yaml")
+
 #ansibl automation platform operator
 aap_subscription = file("${path.module}/manifests/ansible/ansible-app-subscription.yaml")
 aap_operatorgroup = file("${path.module}/manifests/ansible/ansible-operatorgroup.yaml")
