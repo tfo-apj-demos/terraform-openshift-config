@@ -31,6 +31,13 @@ resource "kubernetes_manifest" "redis-operator" {
   manifest = provider::kubernetes::manifest_decode(local.redis_subscription)
 }
 
+#security context constraint
+resource "kubernetes_manifest" "redis-scc" {
+  depends_on = [ kubernetes_namespace.tfe ]
+  manifest = provider::kubernetes::manifest_decode(local.redis_scc)
+}
+
+
 resource "kubernetes_manifest" "pg-cluster" {
   depends_on = [ kubernetes_manifest.pg-operator ]
   manifest = provider::kubernetes::manifest_decode(local.pg_cluster)

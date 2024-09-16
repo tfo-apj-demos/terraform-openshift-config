@@ -4,6 +4,7 @@ pg_subscription = file("${path.module}/manifests/tfe/postgres-subscription.yaml"
 pg_cluster = file("${path.module}/manifests/tfe/postgres-cluster.yaml")
 redis_operatorgroup = file("${path.module}/manifests/tfe/redis-operatorgroup.yaml")
 redis_subscription = file("${path.module}/manifests/tfe/redis-subscription.yaml")
+redis_scc = file("${path.module}/manifests/tfe/redis-scc.yaml")
 redis_cluster = file("${path.module}/manifests/tfe/redis-cluster.yaml")
 
 # TFE S3 Bucket
