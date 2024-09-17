@@ -18,3 +18,8 @@ variable "cluster_ca_certificate" {
     type = string
     description = "The CA certificate for authenticating to the Kubernetes cluster"
 }
+
+variable "boundary_address" {
+  description = "The address of the Boundary server."
+  type        = string
+}

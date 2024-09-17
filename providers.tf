@@ -17,3 +17,7 @@ provider "helm" {
     client_certificate = base64decode(var.client_certificate)
   }
 }
+
+provider "boundary" {
+  addr  = var.boundary_address
+}
