@@ -7,7 +7,7 @@ module "openshift_target" {
 
   hosts = [{
     hostname = "Openshift Console"
-    address  = "https://console-openshift-console.apps.openshift-01.hashicorp.local"
+    address  = "console-openshift-console.apps.openshift-01.hashicorp.local"
   }]
 
   services = [{
@@ -15,5 +15,6 @@ module "openshift_target" {
     name             = "Openshift Console"
     port             = 443
     credential_paths = []
+    alias            = "console-openshift-console.apps.openshift-01.hashicorp.local"
   }]
 } 
