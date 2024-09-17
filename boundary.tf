@@ -1,6 +1,6 @@
 module "openshift_target" {
   source  = "app.terraform.io/tfo-apj-demos/target/boundary"
-  version = "1.8.4"
+  version = "1.8.5"
 
   project_name           = "shared_services"
   hostname_prefix        = "On-Prem Openshift Console"
@@ -14,5 +14,6 @@ module "openshift_target" {
     type             = "tcp"
     name             = "Openshift Console"
     port             = 443
+    credential_paths = []
   }]
 } 
