@@ -7,7 +7,7 @@ module "openshift_target" {
 
   hosts = [{
     hostname = "Openshift Console"
-    address  = "https://console-openshift-console.apps.openshift-01.hashicorp.local/"
+    address  = "https://console-openshift-console.apps.openshift-01.hashicorp.local"
   }]
 
   services = [{
