@@ -16,7 +16,7 @@ locals {
     tfe_database_parameters = "sslmode=disable"
     # Object storage settings
     tfe_object_storage_type                                 = "s3"
-    tfe_object_storage_s3_bucket                            = "${data.kubernetes_resource.s3.data.spec.bucket_name}"
+    tfe_object_storage_s3_bucket                            = "${data.kubernetes_resource.s3.object.data.spec.bucket_name}"
     tfe_object_storage_s3_region                            = "us-east-1"
     tfe_object_storage_s3_endpoint                          = "rook-ceph-rgw-ocs-storagecluster-cephobjectstore.openshift-storage.svc:443"
     tfe_object_storage_s3_use_instance_profile              = false
