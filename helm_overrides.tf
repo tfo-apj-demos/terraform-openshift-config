@@ -10,9 +10,9 @@ locals {
     tfe_hostname = "tfe.hashicorp.local"
 
     # Database settings
-    tfe_database_host       = "${base64decode(data.kubernetes_secret.postgres.data.host)}:${base64decode(data.kubernetes_secret.postgres.data.port)}"
-    tfe_database_name       = "${base64decode(data.kubernetes_secret.postgres.data.user)}"
-    tfe_database_user       = "${base64decode(data.kubernetes_secret.postgres.data.dbname)}"
+    tfe_database_host       = "${data.kubernetes_secret.postgres.data.host}:${data.kubernetes_secret.postgres.data.port}"
+    tfe_database_name       = data.kubernetes_secret.postgres.data.user
+    tfe_database_user       = data.kubernetes_secret.postgres.data.dbname
     tfe_database_parameters = "sslmode=disable"
     # Object storage settings
     tfe_object_storage_type                                 = "s3"
@@ -61,8 +61,8 @@ resource "kubernetes_secret" "tfe-secrets" {
   data = {
     TFE_LICENSE: var.tfe_license
     TFE_ENCRYPTION_PASSWORD: var.tfe_encryption_password
-    TFE_DATABASE_PASSWORD: base64decode(data.kubernetes_secret.postgres.data.password)
-    TFE_REDIS_PASSWORD: base64decode(data.kubernetes_secret.redis.data.password)
+    TFE_DATABASE_PASSWORD: data.kubernetes_secret.postgres.data.password
+    TFE_REDIS_PASSWORD: data.kubernetes_secret.redis.data.password
   }
 
 }
