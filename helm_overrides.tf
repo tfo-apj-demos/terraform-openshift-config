@@ -11,8 +11,8 @@ locals {
 
     # Database settings
     tfe_database_host       = "${data.kubernetes_secret.postgres.data.host}:${data.kubernetes_secret.postgres.data.port}"
-    tfe_database_name       = data.kubernetes_secret.postgres.data.user
-    tfe_database_user       = data.kubernetes_secret.postgres.data.dbname
+    tfe_database_name       = "${data.kubernetes_secret.postgres.data.user}"
+    tfe_database_user       = "${data.kubernetes_secret.postgres.data.dbname}"
     tfe_database_parameters = "sslmode=disable"
     # Object storage settings
     tfe_object_storage_type                                 = "s3"
@@ -20,8 +20,8 @@ locals {
     tfe_object_storage_s3_region                            = "us-east-1"
     tfe_object_storage_s3_endpoint                          = "rook-ceph-rgw-ocs-storagecluster-cephobjectstore.openshift-storage.svc:443"
     tfe_object_storage_s3_use_instance_profile              = false
-    tfe_object_storage_s3_access_key_id                     = data.kubernetes_secret.s3.data.AWS_ACCESS_KEY_ID
-    tfe_object_storage_s3_secret_access_key                 = data.kubernetes_secret.s3.data.AWS_SECRET_ACCESS_KEY
+    tfe_object_storage_s3_access_key_id                     = "${data.kubernetes_secret.s3.data.AWS_ACCESS_KEY_ID}"
+    tfe_object_storage_s3_secret_access_key                 = "${data.kubernetes_secret.s3.data.AWS_SECRET_ACCESS_KEY}"
     tfe_object_storage_s3_server_side_encryption            = ""
 
     # Redis settings
@@ -32,7 +32,6 @@ locals {
 
   tfe_helm_values = yamlencode(templatefile("${path.module}/templates/helm_overrides_values.yaml.tpl", local.helm_overrides_values))
 }
-
 
 data "kubernetes_secret" "s3" {
   metadata {
@@ -54,7 +53,6 @@ data "kubernetes_secret" "redis" {
     namespace = "tfe"
   }
 }
-
 
 resource "kubernetes_secret" "tfe-secrets" {
   metadata {
