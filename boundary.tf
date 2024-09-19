@@ -10,7 +10,7 @@ module "openshift_target" {
 
   services = [{
     type             = "tcp"
-    port             = 443
+    port             = 8443
     use_existing_creds = false
     use_vault_creds    = false
   }]
