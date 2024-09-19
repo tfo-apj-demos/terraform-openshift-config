@@ -25,7 +25,15 @@ resource "kubernetes_manifest" "vaultauth-rolebinding" {
   manifest = provider::kubernetes::manifest_decode(local.vaultauth_rolebinding)
 }
 
-resource "kubernetes_manifest" "vaultauth-secret" {
+resource "kubernetes_secret" "vault_auth_secret" {
   depends_on = [ kubernetes_namespace.vault ]
-  manifest = provider::kubernetes::manifest_decode(local.vaultauth_secret)
+  metadata {
+    name      = "vault-auth-secret"
+    namespace = "vault"
+    annotations = {
+      "kubernetes.io/service-account.name" = "vault-auth"
+    }
+  }
+
+  type = "kubernetes.io/service-account-token"
 }
