@@ -5,8 +5,7 @@ module "openshift_target" {
   hostname_prefix        = "On-Prem Openshift Console"
 
   hosts = [{
-    hostname = "Openshift Console"
-    address  = "console-openshift-console.apps.openshift-01.hashicorp.local"
+    fqdn  = "console-openshift-console.apps.openshift-01.hashicorp.local"
   }]
 
   services = [{
