@@ -1,20 +1,17 @@
 replicaCount: ${tfe_replica_count}
 tls:
-  certificateSecret: <tfe-certs>
+  certificateSecret: "dummy-tls-secret"
   caCertData: |
-    <base64-encoded TFE CA bundle>
-
+    "dummy-ca-cert-data"
 image:
  repository: ${tfe_image_repository_url}
  name: ${tfe_image_name}
  tag: ${tfe_image_tag}
-
 openshift:
    enabled: true
 env:
   secretRefs:
     - name: tfe-secrets
-  
   variables:
     # TFE config settings
     TFE_HOSTNAME: ${tfe_hostname}
