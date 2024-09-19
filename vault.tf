@@ -5,5 +5,5 @@ resource "kubernetes_manifest" "vault-operator" {
 
 
 resource "kubernetes_manifest" "auth_prereqs" {
-  manifest = provider::kubernetes::manifest_decode(local.vault_auth_prereqs)
+  manifest = provider::kubernetes::manifest_decode_multi(local.vault_auth_prereqs)
 }
