@@ -23,3 +23,9 @@ variable "boundary_address" {
   description = "The address of the Boundary server."
   type        = string
 }
+
+variable "create_helm_overrides_file" {
+  description = "Whether to create the Helm overrides file."
+  type        = bool
+  default = true
+}
