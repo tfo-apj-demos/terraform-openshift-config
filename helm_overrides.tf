@@ -29,15 +29,17 @@ locals {
     tfe_redis_use_auth = true
     tfe_redis_use_tls  = false
   }
+
+  tfe_helm_values = templatestring("${path.module}/templates/helm_overrides_values.yaml.tpl", local.helm_overrides_values)
 }
 
-resource "local_file" "helm_overrides_values" {
-  count = var.create_helm_overrides_file ? 1 : 0
+# resource "local_file" "helm_overrides_values" {
+#   count = var.create_helm_overrides_file ? 1 : 0
 
-  content  = templatefile("${path.module}/templates/helm_overrides_values.yaml.tpl", local.helm_overrides_values)
-  filename = "${path.cwd}/helm/module_generated_helm_overrides.yaml"
+#   content  = templatestring("${path.module}/templates/helm_overrides_values.yaml.tpl", local.helm_overrides_values)
+#   filename = "${path.cwd}/helm/module_generated_helm_overrides.yaml"
 
-  lifecycle {
-    ignore_changes = [content, filename]
-  }
-}
+#   lifecycle {
+#     ignore_changes = [content, filename]
+#   }
+# }
