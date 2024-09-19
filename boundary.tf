@@ -1,7 +1,7 @@
 module "openshift_target" {
   source  = "github.com/tfo-apj-demos/terraform-boundary-target-refactored"
 
-  project_name           = "shared_services"
+  project_name           = "gcve_admins"
   hostname_prefix        = "On-Prem Openshift Console"
 
   hosts = [{
