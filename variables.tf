@@ -29,3 +29,16 @@ variable "create_helm_overrides_file" {
   type        = bool
   default = true
 }
+
+variable "tfe_license" {
+  description = "The TFE license."
+  type        = string
+  default = "dummy"
+}
+
+variable "tfe_encryption_password" {
+  description = "The TFE encryption password."
+  type        = string
+  sensitive = true
+  default = "terraformenterprise"
+}

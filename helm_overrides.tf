@@ -10,9 +10,9 @@ locals {
     tfe_hostname = "tfe.hashicorp.local"
 
     # Database settings
-    tfe_database_host       = "tfedb-ha.tfe.svc.cluster.local:5432"
-    tfe_database_name       = "tfe"
-    tfe_database_user       = "tfeadmin"
+    tfe_database_host       = "${base64decode(data.kubernetes_secret.postgres.data.host)}:${base64decode(data.kubernetes_secret.postgres.data.port)}"
+    tfe_database_name       = "${base64decode(data.kubernetes_secret.postgres.data.user)}"
+    tfe_database_user       = "${base64decode(data.kubernetes_secret.postgres.data.dbname)}"
     tfe_database_parameters = "sslmode=disable"
     # Object storage settings
     tfe_object_storage_type                                 = "s3"
@@ -20,8 +20,8 @@ locals {
     tfe_object_storage_s3_region                            = "us-east-1"
     tfe_object_storage_s3_endpoint                          = "rook-ceph-rgw-ocs-storagecluster-cephobjectstore.openshift-storage.svc:443"
     tfe_object_storage_s3_use_instance_profile              = false
-    tfe_object_storage_s3_access_key_id                     = ""
-    tfe_object_storage_s3_secret_access_key                 = ""
+    tfe_object_storage_s3_access_key_id                     = data.kubernetes_secret.s3.data.AWS_ACCESS_KEY_ID
+    tfe_object_storage_s3_secret_access_key                 = data.kubernetes_secret.s3.data.AWS_SECRET_ACCESS_KEY
     tfe_object_storage_s3_server_side_encryption            = ""
 
     # Redis settings
@@ -34,14 +34,50 @@ locals {
 }
 
 
+data "kubernetes_secret" "s3" {
+  metadata {
+    name = "tfeapp"
+  }
+}
 
-# resource "local_file" "helm_overrides_values" {
-#   count = var.create_helm_overrides_file ? 1 : 0
+data "kubernetes_secret" "postgres" {
+  metadata {
+    name = "tfedb-pguser-tfeadmin"
+  }
+}
 
-#   content  = templatefile("${path.module}/templates/helm_overrides_values.yaml.tpl", local.helm_overrides_values)
-#   filename = "${path.cwd}/helm/module_generated_helm_overrides.yaml"
+data "kubernetes_secret" "redis" {
+  metadata {
+    name = "redb-redb"
+  }
+}
 
-#   lifecycle {
-#     ignore_changes = [content, filename]
-#   }
-# }
+
+resource "kubernetes_secret" "tfe-secrets" {
+  metadata {
+    name = "tfe-secrets"
+  }
+
+  data = {
+    TFE_LICENSE: var.tfe_license
+    TFE_ENCRYPTION_PASSWORD: var.tfe_encryption_password
+    TFE_DATABASE_PASSWORD: base64decode(data.kubernetes_secret.postgres.data.password)
+    TFE_REDIS_PASSWORD: base64decode(data.kubernetes_secret.redis.data.password)
+  }
+
+}
+
+# oc get secrets -n tfe 
+
+# NAME                                     TYPE                DATA   AGE
+# pgo-root-cacert                          Opaque              2      7d4h
+# rec                                      Opaque              2      2d20h
+# redb-redb                                Opaque              4      2d19h
+# redis-enterprise-operator-service-cert   kubernetes.io/tls   3      7d4h
+# tfeapp                                   Opaque              2      5d5h
+# tfedb-cluster-cert                       Opaque              3      7d4h
+# tfedb-instance1-dm9l-certs               Opaque              6      7d4h
+# tfedb-pgbackrest                         Opaque              5      7d4h
+# tfedb-pgbouncer                          Opaque              6      7d4h
+# tfedb-pguser-tfeadmin                    Opaque              12     7d4h
+# tfedb-replication-cert                   Opaque              3      7d4h
