@@ -10,14 +10,14 @@ locals {
     tfe_hostname = "tfe.hashicorp.local"
 
     # Database settings
-    tfe_database_host       = "postgres:5432"
+    tfe_database_host       = "tfedb-ha.tfe.svc.cluster.local:5432"
     tfe_database_name       = "tfe"
     tfe_database_user       = "tfeadmin"
     tfe_database_parameters = "sslmode=disable"
     # Object storage settings
     tfe_object_storage_type                                 = "s3"
     tfe_object_storage_s3_bucket                            = "tfeapp-4c0b0bbb-7f6d-4a04-8dc1-c49ae71579f3"
-    tfe_object_storage_s3_region                            = "us-west-2"
+    tfe_object_storage_s3_region                            = "us-east-1"
     tfe_object_storage_s3_endpoint                          = "rook-ceph-rgw-ocs-storagecluster-cephobjectstore.openshift-storage.svc:443"
     tfe_object_storage_s3_use_instance_profile              = false
     tfe_object_storage_s3_access_key_id                     = ""
@@ -25,7 +25,7 @@ locals {
     tfe_object_storage_s3_server_side_encryption            = ""
 
     # Redis settings
-    tfe_redis_host     = "redis"
+    tfe_redis_host     = "redb.tfe.svc.cluster.local:12672"
     tfe_redis_use_auth = true
     tfe_redis_use_tls  = false
   }
