@@ -10,7 +10,14 @@ resource kubernetes_namespace "vault" {
 }
 
 
-resource "kubernetes_manifest" "auth_prereqs" {
-  depends_on = [ kubernetes_namespace.vault ]
-  manifest = provider::kubernetes::manifest_decode_multi(local.vault_auth_prereqs)
+# resource "kubernetes_manifest" "auth_prereqs" {
+#   depends_on = [ kubernetes_namespace.vault ]
+
+#   manifest = provider::kubernetes::manifest_decode_multi(local.vault_auth_prereqs)
+# }
+
+
+output "auth_prereqs" {
+  value = provider::kubernetes::manifest_decode_multi(local.vault_auth_prereqs)
+# }
 }
