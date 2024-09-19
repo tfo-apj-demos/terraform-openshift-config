@@ -22,4 +22,5 @@ aap_eda = file("${path.module}/manifests/ansible/aap-eda.yaml")
 
 # Vault
 vault_operator = file("${path.module}/manifests/vault/vault-operator-subscription.yaml")
+vault_auth_prereqs = file("${path.module}/manifests/vault/vault-auth-prereqs.yaml")
 }
