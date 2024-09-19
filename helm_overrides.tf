@@ -30,7 +30,7 @@ locals {
     tfe_redis_use_tls  = false
   }
 
-  tfe_helm_values = yamlencode(templatefile("${path.module}/templates/helm_overrides_values.yaml.tpl", local.helm_overrides_values))
+  tfe_helm_values = templatefile("${path.module}/templates/helm_overrides_values.yaml.tpl", local.helm_overrides_values)
 }
 
 data "kubernetes_secret" "s3" {
