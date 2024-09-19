@@ -42,7 +42,7 @@ data "kubernetes_secret" "s3" {
 
 
 data "kubernetes_resource" "s3" {
-  api_version = "v1"
+  api_version = "objectbucket.io/v1alpha1"
   kind        = "ObjectBucketClaim"
 
   metadata {
