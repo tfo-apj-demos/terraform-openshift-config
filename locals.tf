@@ -22,5 +22,8 @@ aap_eda = file("${path.module}/manifests/ansible/aap-eda.yaml")
 
 # Vault
 vault_operator = file("${path.module}/manifests/vault/vault-operator-subscription.yaml")
-vault_auth_prereqs = file("${path.module}/manifests/vault/vault-auth-prereqs.yaml")
+vaultauth_sa = file("${path.module}/manifests/vault/vaultauth-sa.yaml")
+vaultauth_clusterrole = file("${path.module}/manifests/vault/vaultauth-clusterrole.yaml")
+vaultauth_rolebinding = file("${path.module}/manifests/vault/vaultauth-rolebinding.yaml")
+vaultauth_secret = file("${path.module}/manifests/vault/vaultauth-secret.yaml")
 }

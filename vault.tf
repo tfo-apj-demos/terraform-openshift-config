@@ -10,9 +10,22 @@ resource kubernetes_namespace "vault" {
 }
 
 
-resource "kubernetes_manifest" "resources" {
+resource "kubernetes_manifest" "vaultauth-sa" {
   depends_on = [ kubernetes_namespace.vault ]
-  for_each = { for manifest in provider::kubernetes::manifest_decode_multi(local.vault_auth_prereqs) : "${manifest.kind}/${manifest.metadata.namespace}/${manifest.metadata.name}" => manifest}
+  manifest = provider::kubernetes::manifest_decode(local.vaultauth_sa)
+}
 
-  manifest = each.value
+resource "kubernetes_manifest" "vaultauth-clusterrole" {
+  depends_on = [ kubernetes_namespace.vault ]
+  manifest = provider::kubernetes::manifest_decode(local.vaultauth_clusterrole)
+}
+
+resource "kubernetes_manifest" "vaultauth-rolebinding" {
+  depends_on = [ kubernetes_namespace.vault ]
+  manifest = provider::kubernetes::manifest_decode(local.vaultauth_rolebinding)
+}
+
+resource "kubernetes_manifest" "vaultauth-secret" {
+  depends_on = [ kubernetes_namespace.vault ]
+  manifest = provider::kubernetes::manifest_decode(local.vaultauth_secret)
 }
