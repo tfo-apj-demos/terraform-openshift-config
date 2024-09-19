@@ -16,7 +16,7 @@ locals {
     tfe_database_parameters = "sslmode=disable"
     # Object storage settings
     tfe_object_storage_type                                 = "s3"
-    tfe_object_storage_s3_bucket                            = "tfeapp-4c0b0bbb-7f6d-4a04-8dc1-c49ae71579f3"
+    tfe_object_storage_s3_bucket                            = "${data.kubernetes_resource.s3.data.spec.bucket_name}"
     tfe_object_storage_s3_region                            = "us-east-1"
     tfe_object_storage_s3_endpoint                          = "rook-ceph-rgw-ocs-storagecluster-cephobjectstore.openshift-storage.svc:443"
     tfe_object_storage_s3_use_instance_profile              = false
@@ -39,6 +39,18 @@ data "kubernetes_secret" "s3" {
     namespace = "tfe"
   }
 }
+
+
+data "kubernetes_resource" "s3" {
+  api_version = "v1"
+  kind        = "ObjectBucketClaim"
+
+  metadata {
+    name      = "tfeapp"
+    namespace = "tfe"
+  }
+}
+
 
 data "kubernetes_secret" "postgres" {
   metadata {
