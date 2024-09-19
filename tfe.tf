@@ -7,9 +7,9 @@ resource "kubernetes_namespace" "tfe" {
 
   lifecycle{
     ignore_changes = [
-        metadata.0.annotations[openshift.io/sa.scc.mcs],
-        metadata.0.annotations[openshift.io/sa.scc.supplemental-groups],
-        metadata.0.annotations[openshift.io/sa.scc.uid-range]
+        metadata.0.annotations["openshift.io/sa.scc.mcs"],
+        metadata.0.annotations["openshift.io/sa.scc.supplemental-groups"],
+        metadata.0.annotations["openshift.io/sa.scc.uid-range"]
     ]
   }
 }
@@ -21,9 +21,9 @@ resource "kubernetes_namespace" "tfe-agents" {
 
   lifecycle{
     ignore_changes = [
-        metadata.0.annotations[openshift.io/sa.scc.mcs],
-        metadata.0.annotations[openshift.io/sa.scc.supplemental-groups],
-        metadata.0.annotations[openshift.io/sa.scc.uid-range]
+        metadata.0.annotations["openshift.io/sa.scc.mcs"],
+        metadata.0.annotations["openshift.io/sa.scc.supplemental-groups"],
+        metadata.0.annotations["openshift.io/sa.scc.uid-range"]
     ]
   }
 }
