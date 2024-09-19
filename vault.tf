@@ -37,3 +37,7 @@ resource "kubernetes_secret" "vault_auth_secret" {
 
   type = "kubernetes.io/service-account-token"
 }
+
+output "vault_auth_secret" {
+  value = kubernetes_secret.vault_auth_secret
+}
