@@ -1,4 +1,4 @@
 output "tfe_helm_output" {
-  value = nonsensitive(replace(local.tfe_helm_values,  "/((?:^|\n)[\\s-]*[^:\\n]+?):/", "\n$1:"))
+  value = nonsensitive( provider::kubernetes::manifest_decode(local.tfe_helm_values) )
   sensitive = false
 }
