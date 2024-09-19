@@ -4,7 +4,7 @@ locals {
     tfe_replica_count       = 1
     tfe_image_repository_url = "images.releases.hashicorp.com"
     tfe_image_name           = "hashicorp/terraform-enterprise"
-    tfe_image_tag            = "v202406-1"
+    tfe_image_tag            = "v202409-1"
 
     # TFE config settings
     tfe_hostname = "tfe.hashicorp.local"
@@ -12,13 +12,13 @@ locals {
     # Database settings
     tfe_database_host       = "postgres:5432"
     tfe_database_name       = "tfe"
-    tfe_database_user       = "dummy"
+    tfe_database_user       = "tfeadmin"
     tfe_database_parameters = "sslmode=disable"
     # Object storage settings
     tfe_object_storage_type                                 = "s3"
-    tfe_object_storage_s3_bucket                            = "s3_bucketname"
+    tfe_object_storage_s3_bucket                            = "tfeapp-4c0b0bbb-7f6d-4a04-8dc1-c49ae71579f3"
     tfe_object_storage_s3_region                            = "us-west-2"
-    tfe_object_storage_s3_endpoint                          = ""
+    tfe_object_storage_s3_endpoint                          = "rook-ceph-rgw-ocs-storagecluster-cephobjectstore.openshift-storage.svc:443"
     tfe_object_storage_s3_use_instance_profile              = false
     tfe_object_storage_s3_access_key_id                     = ""
     tfe_object_storage_s3_secret_access_key                 = ""
@@ -30,8 +30,10 @@ locals {
     tfe_redis_use_tls  = false
   }
 
-  tfe_helm_values = templatefile("${path.module}/templates/helm_overrides_values.yaml.tpl", local.helm_overrides_values)
+  tfe_helm_values = yamlencode(templatefile("${path.module}/templates/helm_overrides_values.yaml.tpl", local.helm_overrides_values))
 }
+
+
 
 # resource "local_file" "helm_overrides_values" {
 #   count = var.create_helm_overrides_file ? 1 : 0

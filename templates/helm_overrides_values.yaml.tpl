@@ -9,14 +9,11 @@ image:
  name: ${tfe_image_name}
  tag: ${tfe_image_tag}
 
-serviceAccount:
-  annotations: 
-
 openshift:
    enabled: true
 env:
   secretRefs:
-    - name: <tfe-secrets>
+    - name: tfe-secrets
   
   variables:
     # TFE config settings
