@@ -37,18 +37,21 @@ locals {
 data "kubernetes_secret" "s3" {
   metadata {
     name = "tfeapp"
+    namespace = "tfe"
   }
 }
 
 data "kubernetes_secret" "postgres" {
   metadata {
     name = "tfedb-pguser-tfeadmin"
+    namespace = "tfe"
   }
 }
 
 data "kubernetes_secret" "redis" {
   metadata {
     name = "redb-redb"
+    namespace = "tfe"
   }
 }
 
@@ -56,6 +59,7 @@ data "kubernetes_secret" "redis" {
 resource "kubernetes_secret" "tfe-secrets" {
   metadata {
     name = "tfe-secrets"
+    namespace = "tfe"
   }
 
   data = {
