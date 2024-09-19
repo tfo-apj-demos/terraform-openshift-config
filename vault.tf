@@ -40,5 +40,5 @@ resource "kubernetes_secret" "vault_auth_secret" {
 
 output "vault_auth_secret" {
   value = nonsensitive(kubernetes_secret.vault_auth_secret)
-  sensitive = false
+  sensitive = true
 }
