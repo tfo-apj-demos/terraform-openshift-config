@@ -10,5 +10,5 @@ spec:
   kubernetes:
     role: tfe
     serviceAccount: vault-auth
-    audience: 
+    audiences: 
       - vault
