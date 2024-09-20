@@ -75,3 +75,22 @@ resource "kubernetes_manifest" "s3bucket-tfeapp" {
   depends_on = [ kubernetes_namespace.tfe ]
   manifest = provider::kubernetes::manifest_decode(local.tfe_s3bucket_tfeapp)
 }
+
+resource "kubernetes_secret" "terraform_enterprise" {
+  metadata {
+    name      = "terraform-enterprise"
+    namespace = "tfe"
+  }
+  
+  type = "kubernetes.io/dockerconfigjson"
+
+  data = {
+    ".dockerconfigjson" = jsonencode({
+      auths = {
+        "images.releases.hashicorp.com" = {
+          auth = base64encode("terraform:${var.tfe_license}")
+        }
+      }
+    })
+  }
+}
