@@ -109,3 +109,25 @@ resource "helm_release" "tfe" {
   ]
 
 }
+
+resource "kubernetes_secret" "operator" {
+  metadata {
+    name      = "hcp-terraform-operator"
+    namespace = "tfe"
+  }
+
+  data = {
+    token = "dummy"#to be updated
+  }
+}
+
+# Terraform Cloud Operator for K8s helm chart
+resource "helm_release" "operator" {
+  depends_on = [ kubernetes_namespace.tfe ]
+  name       = "hcp-terraform-operator"
+  repository = "https://helm.releases.hashicorp.com"
+  chart      = "hcp-terraform-operator"
+  version    = "2.6.1"
+  namespace  = "tfe"
+
+}
