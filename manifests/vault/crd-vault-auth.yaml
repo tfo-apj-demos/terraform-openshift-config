@@ -9,4 +9,6 @@ spec:
   mount: kubernetes
   kubernetes:
     role: tfe
-    serviceAccount: default
+    serviceAccount: vault-auth
+    audience: 
+      - vault
