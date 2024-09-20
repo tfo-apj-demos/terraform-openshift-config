@@ -8,6 +8,7 @@ spec:
     create: true
     overwrite: true
     name: tfe-certificate
+    type: kubernetes.io/tls
   role: gcve
   mount: pki
   commonName: tfe.hashicorp.local
