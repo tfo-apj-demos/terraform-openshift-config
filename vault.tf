@@ -38,7 +38,7 @@ resource "kubernetes_secret" "vault_auth_secret" {
   depends_on = [ kubernetes_namespace.vault ]
   metadata {
     name      = "vault-auth-secret"
-    namespace = "vault"
+    namespace = "tfe"
     annotations = {
       "kubernetes.io/service-account.name" = "vault-auth"
     }
