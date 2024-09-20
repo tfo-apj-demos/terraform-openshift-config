@@ -46,3 +46,9 @@ resource "kubernetes_secret" "vault_auth_secret" {
 
   type = "kubernetes.io/service-account-token"
 }
+
+
+resource "kubernetes_manifest" "vault-connection" {
+  depends_on = [ kubernetes_namespace.vault ]
+  manifest = provider::kubernetes::manifest_decode(local.vault_connection)
+}
