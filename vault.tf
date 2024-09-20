@@ -52,3 +52,8 @@ resource "kubernetes_manifest" "vault-connection" {
   depends_on = [ kubernetes_namespace.vault ]
   manifest = provider::kubernetes::manifest_decode(local.vault_connection)
 }
+
+resource "kubernetes_manifest" "vault-auth-crd" {
+  depends_on = [ kubernetes_namespace.vault ]
+  manifest = provider::kubernetes::manifest_decode(local.vault_auth)
+}

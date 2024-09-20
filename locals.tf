@@ -27,4 +27,5 @@ vaultauth_clusterrole = file("${path.module}/manifests/vault/vaultauth-clusterro
 vaultauth_rolebinding = file("${path.module}/manifests/vault/vaultauth-rolebinding.yaml")
 vaultauth_secret = file("${path.module}/manifests/vault/vaultauth-secret.yaml")
 vault_connection = file("${path.module}/manifests/vault/crd-vault-connection.yaml")
+vault_auth = file("${path.module}/manifests/vault/crd-vault-auth.yaml")
 }
