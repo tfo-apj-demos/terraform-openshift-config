@@ -2,7 +2,7 @@ apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultPKISecret
 metadata:
   name: tfecert
-  namespace: vault
+  namespace: tfe
 spec:
   destination:
     create: false
