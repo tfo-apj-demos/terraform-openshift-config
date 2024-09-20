@@ -100,7 +100,7 @@ resource "helm_release" "tfe" {
   name       = "terraform-enterprise"
   repository = "https://helm.releases.hashicorp.com"
   chart      = "https://github.com/hashicorp/terraform-enterprise-helm"
-  version    = "v1.3.2"
+  version    = "1.3.2"
   create_namespace = false
   namespace = "tfe"
 
