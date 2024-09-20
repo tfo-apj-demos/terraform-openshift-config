@@ -5,8 +5,8 @@ metadata:
   namespace: tfe
 spec:
   destination:
-    create: false
-    overwrite: false
+    create: true
+    overwrite: true
     name: tfe-certificate
   role: gcve
   mount: pki
