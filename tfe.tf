@@ -88,6 +88,8 @@ resource "kubernetes_secret" "terraform_enterprise" {
     ".dockerconfigjson" = jsonencode({
       auths = {
         "images.releases.hashicorp.com" = {
+          username = "terraform"
+          password = var.tfe_license
           auth = base64encode("terraform:${var.tfe_license}")
         }
       }
