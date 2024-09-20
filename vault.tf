@@ -57,3 +57,9 @@ resource "kubernetes_manifest" "vault-auth-crd" {
   depends_on = [ kubernetes_namespace.vault ]
   manifest = provider::kubernetes::manifest_decode(local.vault_auth)
 }
+
+
+resource "kubernetes_manifest" "pki-tfe-crd" {
+  depends_on = [ kubernetes_namespace.vault ]
+  manifest = provider::kubernetes::manifest_decode(local.tfe_pkicert)
+}
