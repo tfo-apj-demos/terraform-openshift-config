@@ -15,19 +15,19 @@ resource "kubernetes_namespace" "tfe" {
   }
 }
 
-resource "kubernetes_namespace" "tfe-agents" {
-  metadata {
-    name = "tfe-agents"
-  }
+# resource "kubernetes_namespace" "tfe-agents" {
+#   metadata {
+#     name = "tfe-agents"
+#   }
 
-  lifecycle{
-    ignore_changes = [
-        metadata.0.annotations["openshift.io/sa.scc.mcs"],
-        metadata.0.annotations["openshift.io/sa.scc.supplemental-groups"],
-        metadata.0.annotations["openshift.io/sa.scc.uid-range"]
-    ]
-  }
-}
+#   lifecycle{
+#     ignore_changes = [
+#         metadata.0.annotations["openshift.io/sa.scc.mcs"],
+#         metadata.0.annotations["openshift.io/sa.scc.supplemental-groups"],
+#         metadata.0.annotations["openshift.io/sa.scc.uid-range"]
+#     ]
+#   }
+# }
 
 
 resource "kubernetes_manifest" "pg-operator" {
