@@ -25,7 +25,7 @@ vault_operator = file("${path.module}/manifests/vault/vault-operator-subscriptio
 vaultauth_sa = file("${path.module}/manifests/vault/vaultauth-sa.yaml")
 vaultauth_clusterrole = file("${path.module}/manifests/vault/vaultauth-clusterrole.yaml")
 vaultauth_rolebinding = file("${path.module}/manifests/vault/vaultauth-rolebinding.yaml")
-vaultauth_secret = file("${path.module}/manifests/vault/vaultauth-secret.yaml")
+
 vault_connection = file("${path.module}/manifests/vault/crd-vault-connection.yaml")
 vault_auth = file("${path.module}/manifests/vault/crd-vault-auth.yaml")
 #tfe cert
