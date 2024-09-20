@@ -69,4 +69,5 @@ resource "kubernetes_secret" "pki-tfecert" {
     name      = "tfe-certificate"
     namespace = "tfe"
   }
+  type = "kubernetes.io/tls"
 }

@@ -1,8 +1,6 @@
 replicaCount: ${tfe_replica_count}
 tls:
-  certificateSecret: "dummy-tls-secret"
-  caCertData: |
-    "dummy-ca-cert-data"
+  certificateSecret: "tfe-certificate"
 image:
  repository: ${tfe_image_repository_url}
  name: ${tfe_image_name}
