@@ -20,7 +20,7 @@ locals {
     tfe_object_storage_s3_region                            = "us-east-1"
     tfe_object_storage_s3_endpoint                          = "rook-ceph-rgw-ocs-storagecluster-cephobjectstore.openshift-storage.svc.cluster.local"
     tfe_object_storage_s3_use_instance_profile              = false
-    tfe_object_storage_s3_access_key_id                     = base64decode(data.kubernetes_secret.s3.data.AWS_ACCESS_KEY_ID)
+    tfe_object_storage_s3_access_key_id                     = "${data.kubernetes_secret.s3.data.AWS_ACCESS_KEY_ID}"
     tfe_object_storage_s3_server_side_encryption            = ""
 
     # Redis settings
