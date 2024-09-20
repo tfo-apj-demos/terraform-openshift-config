@@ -64,10 +64,10 @@ resource "kubernetes_manifest" "pki-tfe-crd" {
 }
 
 
-resource "kubernetes_secret" "pki-tfecert" {
-  metadata {
-    name      = "tfe-certificate"
-    namespace = "tfe"
-  }
-  type = "kubernetes.io/tls"
-}
+# resource "kubernetes_secret" "pki-tfecert" {
+#   metadata {
+#     name      = "tfe-certificate"
+#     namespace = "tfe"
+#   }
+#   type = "kubernetes.io/tls"
+# }
