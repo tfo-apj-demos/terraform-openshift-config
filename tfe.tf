@@ -99,7 +99,7 @@ resource "kubernetes_secret" "terraform_enterprise" {
 resource "helm_release" "tfe" {
   name       = "terraform-enterprise"
   repository = "https://helm.releases.hashicorp.com"
-  chart      = "terraform-enterprise-helm"
+  chart      = "https://github.com/hashicorp/terraform-enterprise-helm"
   version    = "v1.3.2"
   create_namespace = false
   namespace = "tfe"
