@@ -1,0 +1,11 @@
+apiVersion: app.redislabs.com/v1alpha1
+kind: RedisEnterpriseDatabase
+metadata:
+  name: redb
+  namespace: tfe
+spec:
+  ossCluster: true
+  type: redis
+  databasePort: 6379
+  persistence: disabled
+  redisVersion: major
