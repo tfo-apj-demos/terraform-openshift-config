@@ -76,6 +76,7 @@ resource "kubernetes_secret" "tfe-secrets" {
     TFE_ENCRYPTION_PASSWORD: var.tfe_encryption_password
     TFE_DATABASE_PASSWORD: data.kubernetes_secret.postgres.data.password
     TFE_REDIS_PASSWORD: data.kubernetes_secret.redis.data.password
+    TFE_OBJECT_STORAGE_S3_ACCESS_KEY_ID: data.kubernetes_secret.s3.data.AWS_ACCESS_KEY_ID
     TFE_OBJECT_STORAGE_S3_SECRET_ACCESS_KEY: data.kubernetes_secret.s3.data.AWS_SECRET_ACCESS_KEY
   }
 
