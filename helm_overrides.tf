@@ -20,7 +20,7 @@ locals {
     tfe_object_storage_s3_region                            = ""
     tfe_object_storage_s3_endpoint                          = "https://rook-ceph-rgw-ocs-storagecluster-cephobjectstore.openshift-storage.svc:443"
     tfe_object_storage_s3_use_instance_profile              = false
-    tfe_object_storage_s3_access_key_id                     = "${data.kubernetes_secret.s3.data.AWS_ACCESS_KEY_ID}"
+    tfe_object_storage_s3_access_key_id                     = ""#"${data.kubernetes_secret.s3.data.AWS_ACCESS_KEY_ID}"
     tfe_object_storage_s3_server_side_encryption            = ""
 
     # Redis settings
@@ -65,22 +65,22 @@ data "kubernetes_secret" "redis" {
   }
 }
 
-resource "kubernetes_secret" "tfe-secrets" {
-  depends_on = [ kubernetes_manifest.s3bucket-tfeapp ]
-  metadata {
-    name = "tfe-secrets"
-    namespace = "tfe"
-  }
+# resource "kubernetes_secret" "tfe-secrets" {
+#   depends_on = [ kubernetes_manifest.s3bucket-tfeapp ]
+#   metadata {
+#     name = "tfe-secrets"
+#     namespace = "tfe"
+#   }
 
-  data = {
-    TFE_LICENSE: var.tfe_license
-    TFE_ENCRYPTION_PASSWORD: var.tfe_encryption_password
-    TFE_DATABASE_PASSWORD: data.kubernetes_secret.postgres.data.password
-    TFE_REDIS_PASSWORD: data.kubernetes_secret.redis.data.password
-    TFE_OBJECT_STORAGE_S3_SECRET_ACCESS_KEY: data.kubernetes_secret.s3.data.AWS_SECRET_ACCESS_KEY
-  }
+#   data = {
+#     TFE_LICENSE: var.tfe_license
+#     TFE_ENCRYPTION_PASSWORD: var.tfe_encryption_password
+#     TFE_DATABASE_PASSWORD: data.kubernetes_secret.postgres.data.password
+#     TFE_REDIS_PASSWORD: data.kubernetes_secret.redis.data.password
+#     TFE_OBJECT_STORAGE_S3_SECRET_ACCESS_KEY: data.kubernetes_secret.s3.data.AWS_SECRET_ACCESS_KEY
+#   }
 
-}
+# }
 
 # oc get secrets -n tfe 
 
