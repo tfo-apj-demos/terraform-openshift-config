@@ -1,0 +1,23 @@
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: crunchy-postgres-scc
+allowPrivilegeEscalation: true
+allowedCapabilities: []
+fsGroup:
+  type: RunAsAny
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: RunAsAny
+supplementalGroups:
+  type: RunAsAny
+users:
+- system:serviceaccount:tfe:pgo
+volumes:
+- configMap
+- emptyDir
+- projected
+- secret
+- downwardAPI
+- persistentVolumeClaim
