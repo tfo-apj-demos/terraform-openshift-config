@@ -110,6 +110,7 @@ resource "helm_release" "tfe" {
   version    = "1.3.2"
   create_namespace = false
   namespace = "tfe"
+  wait = false
 
   values = [
     local.tfe_helm_values
