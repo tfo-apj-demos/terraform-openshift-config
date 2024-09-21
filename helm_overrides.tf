@@ -21,7 +21,6 @@ locals {
     tfe_object_storage_s3_endpoint                          = "https://rook-ceph-rgw-ocs-storagecluster-cephobjectstore.openshift-storage.svc:443"
     tfe_object_storage_s3_use_instance_profile              = false
     tfe_object_storage_s3_access_key_id                     = data.kubernetes_secret.s3.data.AWS_ACCESS_KEY_ID
-    #tfe_object_storage_s3_server_side_encryption            = ""
 
     # Redis settings
     tfe_redis_host     = "redb.tfe.svc.cluster.local:12672"
@@ -81,18 +80,3 @@ resource "kubernetes_secret" "tfe-secrets" {
   }
 
 }
-
-# oc get secrets -n tfe 
-
-# NAME                                     TYPE                DATA   AGE
-# pgo-root-cacert                          Opaque              2      7d4h
-# rec                                      Opaque              2      2d20h
-# redb-redb                                Opaque              4      2d19h
-# redis-enterprise-operator-service-cert   kubernetes.io/tls   3      7d4h
-# tfeapp                                   Opaque              2      5d5h
-# tfedb-cluster-cert                       Opaque              3      7d4h
-# tfedb-instance1-dm9l-certs               Opaque              6      7d4h
-# tfedb-pgbackrest                         Opaque              5      7d4h
-# tfedb-pgbouncer                          Opaque              6      7d4h
-# tfedb-pguser-tfeadmin                    Opaque              12     7d4h
-# tfedb-replication-cert                   Opaque              3      7d4h
