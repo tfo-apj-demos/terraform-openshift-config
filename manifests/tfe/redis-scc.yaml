@@ -28,3 +28,6 @@ seccompProfiles:
   - runtime/default
 supplementalGroups:
   type: RunAsAny
+users:
+  - system:serviceaccount:tfe:redis-enterprise-operator
+  - system:serviceaccount:tfe:rec
