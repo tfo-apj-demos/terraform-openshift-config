@@ -23,7 +23,7 @@ locals {
     tfe_object_storage_s3_access_key_id                     = data.kubernetes_secret.s3.data.AWS_ACCESS_KEY_ID
 
     # Redis settings
-    tfe_redis_host     = "redb.tfe.svc.cluster.local"
+    tfe_redis_host     = "redis"
     tfe_redis_use_auth = true
     tfe_redis_use_tls  = false
   }
@@ -57,13 +57,13 @@ data "kubernetes_secret" "postgres" {
   }
 }
 
-data "kubernetes_secret" "redis" {
-  depends_on = [ kubernetes_manifest.redis-db ]
-  metadata {
-    name = "redb-redb"
-    namespace = "tfe"
-  }
-}
+# data "kubernetes_secret" "redis" {
+#   depends_on = [ kubernetes_manifest.redis-db ]
+#   metadata {
+#     name = "redb-redb"
+#     namespace = "tfe"
+#   }
+# }
 
 resource "kubernetes_secret" "tfe-secrets" {
   depends_on = [ kubernetes_manifest.s3bucket-tfeapp ]
@@ -76,7 +76,7 @@ resource "kubernetes_secret" "tfe-secrets" {
     TFE_LICENSE: var.tfe_license
     TFE_ENCRYPTION_PASSWORD: var.tfe_encryption_password
     TFE_DATABASE_PASSWORD: "${data.kubernetes_secret.postgres.data.password}"
-    TFE_REDIS_PASSWORD: data.kubernetes_secret.redis.data.password
+    #TFE_REDIS_PASSWORD: data.kubernetes_secret.redis.data.password
     TFE_OBJECT_STORAGE_S3_ACCESS_KEY_ID: data.kubernetes_secret.s3.data.AWS_ACCESS_KEY_ID
     TFE_OBJECT_STORAGE_S3_SECRET_ACCESS_KEY: data.kubernetes_secret.s3.data.AWS_SECRET_ACCESS_KEY
   }

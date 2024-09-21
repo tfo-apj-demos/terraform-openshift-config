@@ -43,20 +43,20 @@ resource "kubernetes_manifest" "pg-operator" {
 
 
 
-resource "kubernetes_manifest" "redis-operatorgroup" {
-  depends_on = [ kubernetes_namespace.tfe ]
-  manifest = provider::kubernetes::manifest_decode(local.redis_operatorgroup)
-}
+# resource "kubernetes_manifest" "redis-operatorgroup" {
+#   depends_on = [ kubernetes_namespace.tfe ]
+#   manifest = provider::kubernetes::manifest_decode(local.redis_operatorgroup)
+# }
 
-resource "kubernetes_manifest" "redis-operator" {
-  depends_on = [ kubernetes_namespace.tfe ]
-  manifest = provider::kubernetes::manifest_decode(local.redis_subscription)
-}
+# resource "kubernetes_manifest" "redis-operator" {
+#   depends_on = [ kubernetes_namespace.tfe ]
+#   manifest = provider::kubernetes::manifest_decode(local.redis_subscription)
+# }
 
-#security context constraint
-resource "kubernetes_manifest" "redis-scc" {
-  manifest = provider::kubernetes::manifest_decode(local.redis_scc)
-}
+# #security context constraint
+# resource "kubernetes_manifest" "redis-scc" {
+#   manifest = provider::kubernetes::manifest_decode(local.redis_scc)
+# }
 
 
 resource "kubernetes_manifest" "pg-cluster" {
@@ -65,23 +65,23 @@ resource "kubernetes_manifest" "pg-cluster" {
   
 }
 
-resource "kubernetes_manifest" "redis-cluster" {
-  depends_on = [ kubernetes_manifest.redis-operator ]
+# resource "kubernetes_manifest" "redis-cluster" {
+#   depends_on = [ kubernetes_manifest.redis-operator ]
 
-  manifest = provider::kubernetes::manifest_decode(local.redis_cluster)
-  field_manager {
-    force_conflicts = true
-  }
-}
+#   manifest = provider::kubernetes::manifest_decode(local.redis_cluster)
+#   field_manager {
+#     force_conflicts = true
+#   }
+# }
 
-resource "kubernetes_manifest" "redis-db" {
-  depends_on = [ kubernetes_manifest.redis-operator ]
+# resource "kubernetes_manifest" "redis-db" {
+#   depends_on = [ kubernetes_manifest.redis-operator ]
 
-  manifest = provider::kubernetes::manifest_decode(local.redis_db)
-  field_manager {
-    force_conflicts = true
-  }
-}
+#   manifest = provider::kubernetes::manifest_decode(local.redis_db)
+#   field_manager {
+#     force_conflicts = true
+#   }
+# }
 
 
 
