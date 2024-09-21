@@ -23,7 +23,7 @@ locals {
     tfe_object_storage_s3_access_key_id                     = data.kubernetes_secret.s3.data.AWS_ACCESS_KEY_ID
 
     # Redis settings
-    tfe_redis_host     = "redb.tfe.svc.cluster.local:12672"
+    tfe_redis_host     = "rec.tfe.svc.cluster.local"
     tfe_redis_use_auth = true
     tfe_redis_use_tls  = false
   }
@@ -60,7 +60,7 @@ data "kubernetes_secret" "postgres" {
 data "kubernetes_secret" "redis" {
   depends_on = [ kubernetes_manifest.redis-db ]
   metadata {
-    name = "redb"
+    name = "redb-redb"
     namespace = "tfe"
   }
 }
