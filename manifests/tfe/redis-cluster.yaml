@@ -14,5 +14,5 @@ spec:
     repository: registry.connect.redhat.com/redislabs/redis-enterprise
   redisEnterpriseServicesRiggerImageSpec:
     repository: registry.connect.redhat.com/redislabs/services-manager
-  nodes: 3
+  nodes: 1
   uiServiceType: ClusterIP
