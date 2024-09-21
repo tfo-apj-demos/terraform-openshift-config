@@ -67,10 +67,7 @@ data:
     maxmemory 3072mb
     maxmemory-policy allkeys-lru
     appendonly no
-    appendfsync everysec
-    save 900 1
-    save 300 10
-    save 60 10000
+    save ""
 ---
 apiVersion: v1
 kind: Service
