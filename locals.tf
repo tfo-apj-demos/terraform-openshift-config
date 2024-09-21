@@ -7,6 +7,7 @@ redis_operatorgroup = file("${path.module}/manifests/tfe/redis-operatorgroup.yam
 redis_subscription = file("${path.module}/manifests/tfe/redis-subscription.yaml")
 redis_scc = file("${path.module}/manifests/tfe/redis-scc.yaml")
 redis_cluster = file("${path.module}/manifests/tfe/redis-cluster.yaml")
+redis_db = file("${path.module}/manifests/tfe/redis-db.yaml")
 
 # TFE S3 Bucket
 tfe_s3bucket_tfeapp = file("${path.module}/manifests/tfe/s3bucket-tfeapp.yaml")

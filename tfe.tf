@@ -74,6 +74,15 @@ resource "kubernetes_manifest" "redis-cluster" {
   }
 }
 
+resource "kubernetes_manifest" "redis-db" {
+  depends_on = [ kubernetes_manifest.redis-operator ]
+
+  manifest = provider::kubernetes::manifest_decode(local.redis_db)
+  field_manager {
+    force_conflicts = true
+  }
+}
+
 
 
 resource "kubernetes_manifest" "s3bucket-tfeapp" {
