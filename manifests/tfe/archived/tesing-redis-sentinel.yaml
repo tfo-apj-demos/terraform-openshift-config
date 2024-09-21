@@ -1,0 +1,40 @@
+apiVersion: redis.redis.opstreelabs.in/v1beta1
+kind: RedisSentinel
+metadata:
+  name: redis-sentinel
+  namespace: tfe
+spec:
+  redisSentinelConfig:
+    downAfterMilliseconds: '30000'
+    failoverTimeout: '180000'
+    masterGroupName: myMaster
+    parallelSyncs: '1'
+    quorum: '2'
+    redisPort: '6379'
+    redisReplicationName: redis-replication
+  readinessProbe:
+    failureThreshold: 3
+    initialDelaySeconds: 1
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+  kubernetesConfig:
+    resources:
+      limits:
+        cpu: 101m
+        memory: 128Mi
+      requests:
+        cpu: 101m
+        memory: 128Mi
+    image: 'quay.io/opstree/redis-sentinel:v7.0.7'
+    imagePullPolicy: IfNotPresent
+  livenessProbe:
+    failureThreshold: 3
+    initialDelaySeconds: 1
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+  clusterSize: 3
+  podSecurityContext:
+    runAsUser: 1000
+    fsGroup: 1000
