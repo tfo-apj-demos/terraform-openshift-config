@@ -18,7 +18,7 @@ locals {
     tfe_object_storage_type                                 = "s3"
     tfe_object_storage_s3_bucket                            = data.kubernetes_resource.s3.object.spec.bucketName
     tfe_object_storage_s3_region                            = "us-east-1"
-    tfe_object_storage_s3_endpoint                          = "https://rook-ceph-rgw-ocs-storagecluster-cephobjectstore.openshift-storage.svc:443"
+    tfe_object_storage_s3_endpoint                          = "rook-ceph-rgw-ocs-storagecluster-cephobjectstore.openshift-storage.svc:443"
     tfe_object_storage_s3_use_instance_profile              = false
     tfe_object_storage_s3_access_key_id                     = data.kubernetes_secret.s3.data.AWS_ACCESS_KEY_ID
 
