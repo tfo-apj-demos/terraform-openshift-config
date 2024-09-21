@@ -27,7 +27,6 @@ env:
     TFE_OBJECT_STORAGE_S3_ENDPOINT: ${tfe_object_storage_s3_endpoint}
     TFE_OBJECT_STORAGE_S3_USE_INSTANCE_PROFILE: ${tfe_object_storage_s3_use_instance_profile}
     TFE_OBJECT_STORAGE_S3_ACCESS_KEY_ID: ${tfe_object_storage_s3_access_key_id}
-
     # Redis settings
     TFE_REDIS_HOST: ${tfe_redis_host}
     TFE_REDIS_USE_AUTH: ${tfe_redis_use_auth}
