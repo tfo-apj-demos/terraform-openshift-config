@@ -23,7 +23,7 @@ locals {
     tfe_object_storage_s3_access_key_id                     = data.kubernetes_secret.s3.data.AWS_ACCESS_KEY_ID
 
     # Redis settings
-    tfe_redis_host     = "redis-12672.rec.tfe.svc.cluster.local:12672"#"redb.tfe.svc.cluster.local:12672"
+    tfe_redis_host     = "redb.tfe.svc.cluster.local:12672"
     tfe_redis_use_auth = true
     tfe_redis_use_tls  = false
   }
