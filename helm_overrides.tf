@@ -58,8 +58,9 @@ data "kubernetes_secret" "postgres" {
 }
 
 data "kubernetes_secret" "redis" {
+  depends_on = [ kubernetes_manifest.redis-db ]
   metadata {
-    name = "redb-redb"
+    name = "redb"
     namespace = "tfe"
   }
 }
