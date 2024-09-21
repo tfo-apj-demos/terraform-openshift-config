@@ -16,7 +16,7 @@ locals {
     tfe_database_parameters = "sslmode=disable"
     # Object storage settings
     tfe_object_storage_type                                 = "s3"
-    tfe_object_storage_s3_bucket                            = "${data.kubernetes_resource.s3.object.spec.bucketName}"
+    tfe_object_storage_s3_bucket                            = ""#${data.kubernetes_resource.s3.object.spec.bucketName}"
     tfe_object_storage_s3_region                            = ""
     tfe_object_storage_s3_endpoint                          = "https://rook-ceph-rgw-ocs-storagecluster-cephobjectstore.openshift-storage.svc:443"
     tfe_object_storage_s3_use_instance_profile              = false
@@ -32,23 +32,23 @@ locals {
   tfe_helm_values = templatefile("${path.module}/templates/helm_overrides_values.yaml.tpl", local.helm_overrides_values)
 }
 
-data "kubernetes_secret" "s3" {
-  metadata {
-    name = "tfeapp"
-    namespace = "tfe"
-  }
-}
+# data "kubernetes_secret" "s3" {
+#   metadata {
+#     name = "tfeapp"
+#     namespace = "tfe"
+#   }
+# }
 
 
-data "kubernetes_resource" "s3" {
-  api_version = "objectbucket.io/v1alpha1"
-  kind        = "ObjectBucketClaim"
+# data "kubernetes_resource" "s3" {
+#   api_version = "objectbucket.io/v1alpha1"
+#   kind        = "ObjectBucketClaim"
 
-  metadata {
-    name      = "tfeapp"
-    namespace = "tfe"
-  }
-}
+#   metadata {
+#     name      = "tfeapp"
+#     namespace = "tfe"
+#   }
+# }
 
 
 data "kubernetes_secret" "postgres" {
