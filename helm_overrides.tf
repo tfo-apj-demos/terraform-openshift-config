@@ -11,8 +11,8 @@ locals {
 
     # Database settings
     tfe_database_host       = "${data.kubernetes_secret.postgres.data.host}:${data.kubernetes_secret.postgres.data.port}"
-    tfe_database_name       = "${data.kubernetes_secret.postgres.data.user}"
-    tfe_database_user       = "${data.kubernetes_secret.postgres.data.dbname}"
+    tfe_database_name       = "${data.kubernetes_secret.postgres.data.dbname}"
+    tfe_database_user       = "${data.kubernetes_secret.postgres.data.user}"
     tfe_database_parameters = "sslmode=disable"
     # Object storage settings
     tfe_object_storage_type                                 = "s3"
