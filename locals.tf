@@ -2,6 +2,7 @@ locals {
 # TFE
 pg_subscription = file("${path.module}/manifests/tfe/postgres-subscription.yaml")
 pg_scc = file("${path.module}/manifests/tfe/postgres-scc.yaml")
+pg_operatorgroup = file("${path.module}/manifests/tfe/postgres-operatorgroup.yaml")
 pg_cluster = file("${path.module}/manifests/tfe/postgres-cluster.yaml")
 # redis_operatorgroup = file("${path.module}/manifests/tfe/redis-operatorgroup.yaml")
 # redis_subscription = file("${path.module}/manifests/tfe/redis-subscription.yaml")
