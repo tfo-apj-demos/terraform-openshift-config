@@ -10,7 +10,7 @@ resource "kubernetes_namespace" "tfe" {
         metadata.0.annotations["openshift.io/sa.scc.mcs"],
         metadata.0.annotations["openshift.io/sa.scc.supplemental-groups"],
         metadata.0.annotations["openshift.io/sa.scc.uid-range"],
-        metadata.0.labels["olm.operatorgroup.uid/acd7ea75-3a17-44aa-9c11-3518b946e6f7"],
+        metadata.0.labels["olm.operatorgroup.uid/78dff708-1437-40e8-90af-eccf84e06ae7"],
     ]
   }
 }
