@@ -25,7 +25,7 @@ locals {
 resource "helm_release" "awx" {
   name       = "awx-operator"
   repository = "https://ansible-community.github.io/awx-operator-helm"
-  chart      = "awx-operator/awx-operator"
+  chart      = "awx-operator"
   version    = "1.3.0"
   create_namespace = false
   namespace = kubernetes_namespace.awx.metadata[0].name
