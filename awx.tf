@@ -17,7 +17,7 @@ locals {
 # deploy tfe using helm chart
 resource "helm_release" "awx" {
   name       = "awx-operator"
-  repository = "https://ansible-community.github.io/awx-operator-helm/"
+  repository = "https://ansible-community.github.io/awx-operator-helm"
   chart      = "awx-operator/awx-operator"
   version    = "2.19.1"
   create_namespace = false
