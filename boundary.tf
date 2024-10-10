@@ -1,4 +1,4 @@
-module "openshift_target" {
+/*module "openshift_target" {
   source  = "app.terraform.io/tfo-apj-demos/target/boundary"
   version = "~> 2.0.1"
 
@@ -54,4 +54,4 @@ module "controller_target" {
     use_existing_creds = false
     use_vault_creds    = false
   }]
-}
+}*/
