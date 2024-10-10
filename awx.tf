@@ -19,7 +19,7 @@ resource "helm_release" "awx" {
   name       = "awx-operator"
   repository = "https://ansible-community.github.io/awx-operator-helm/"
   chart      = "awx-operator/awx-operator"
-  version    = "latest"
+  version    = "~> 2"
   create_namespace = false
   namespace = kubernetes_namespace.awx.metadata[0].name
   wait = false
