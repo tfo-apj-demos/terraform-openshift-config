@@ -2,6 +2,13 @@ resource "kubernetes_namespace" "awx" {
   metadata {
     name = "awx"
   }  
+  lifecycle{
+    ignore_changes = [
+        metadata.0.annotations["openshift.io/sa.scc.mcs"],
+        metadata.0.annotations["openshift.io/sa.scc.supplemental-groups"],
+        metadata.0.annotations["openshift.io/sa.scc.uid-range"]
+    ]
+  }
 }
 
 # AWX
@@ -19,7 +26,7 @@ resource "helm_release" "awx" {
   name       = "awx-operator"
   repository = "https://ansible-community.github.io/awx-operator-helm"
   chart      = "awx-operator/awx-operator"
-  version    = "2.19.1"
+  version    = "1.3.0"
   create_namespace = false
   namespace = kubernetes_namespace.awx.metadata[0].name
   wait = false
