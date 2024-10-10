@@ -44,8 +44,3 @@ resource "kubernetes_manifest" "aap-hub" {
 depends_on = [ kubernetes_manifest.aap-subscription ]
   manifest = provider::kubernetes::manifest_decode(local.aap_hub)
 }
-
-# AWX
-resource "kubernetes_manifest" "awx" {
-  manifest = provider::kubernetes::manifest_decode(local.awx)
-}
