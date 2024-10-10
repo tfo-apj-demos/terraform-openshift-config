@@ -1,5 +1,5 @@
 locals {
-  helm_overrides_values = {
+  tfe_helm_overrides_values = {
     # TFE image settings
     tfe_replica_count       = 1
     tfe_image_repository_url = "images.releases.hashicorp.com"
@@ -28,7 +28,7 @@ locals {
     tfe_redis_use_tls  = false
   }
 
-  tfe_helm_values = templatefile("${path.module}/templates/helm_overrides_values.yaml.tpl", local.helm_overrides_values)
+  tfe_helm_values = templatefile("${path.module}/templates/tfe_helm_overrides_values.yaml.tpl", local.tfe_helm_overrides_values)
 }
 
 data "kubernetes_secret" "s3" {
