@@ -55,3 +55,27 @@ module "controller_target" {
     use_vault_creds    = false
   }]
 }*/
+
+removed {
+  from = module.openshift_target
+
+  lifecycle {
+    destroy = false
+  }
+}
+
+removed {
+  from = module.oauth_target
+
+  lifecycle {
+    destroy = false
+  }
+}
+
+removed {
+  from = module.controller_target
+
+  lifecycle {
+    destroy = false
+  }
+}
