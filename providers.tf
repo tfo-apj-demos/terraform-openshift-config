@@ -18,6 +18,6 @@ provider "helm" {
   }
 }
 
-provider "boundary" {
+/*provider "boundary" {
   addr  = var.boundary_address
-}
+}*/
