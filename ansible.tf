@@ -26,45 +26,45 @@ depends_on = [ kubernetes_namespace.aap ]
   manifest = provider::kubernetes::manifest_decode(local.aap_subscription)
 }
 
-removed {
-  from = kubernetes_manifest.aap-controller
+# removed {
+#   from = kubernetes_manifest.aap-controller
 
-  lifecycle {
-    destroy = false
-  }
-}
-
-# Ansible Controller resource
-# resource "kubernetes_manifest" "aap-controller" {
-# depends_on = [ kubernetes_manifest.aap-subscription ]
-#   manifest = provider::kubernetes::manifest_decode(local.aap_controller)
+#   lifecycle {
+#     destroy = false
+#   }
 # }
 
-# Ansible EDA resource
-# resource "kubernetes_manifest" "aap-eda" {
-# depends_on = [ kubernetes_manifest.aap-subscription ]
-#   manifest = provider::kubernetes::manifest_decode(local.aap_eda)
+# # Ansible Controller resource
+# # resource "kubernetes_manifest" "aap-controller" {
+# # depends_on = [ kubernetes_manifest.aap-subscription ]
+# #   manifest = provider::kubernetes::manifest_decode(local.aap_controller)
+# # }
+
+# # Ansible EDA resource
+# # resource "kubernetes_manifest" "aap-eda" {
+# # depends_on = [ kubernetes_manifest.aap-subscription ]
+# #   manifest = provider::kubernetes::manifest_decode(local.aap_eda)
+# # }
+
+# removed {
+#   from = kubernetes_manifest.aap-eda
+
+#   lifecycle {
+#     destroy = false
+#   }
 # }
 
-removed {
-  from = kubernetes_manifest.aap-eda
 
-  lifecycle {
-    destroy = false
-  }
-}
+# # Ansible Automation Hub
+# # resource "kubernetes_manifest" "aap-hub" {
+# # depends_on = [ kubernetes_manifest.aap-subscription ]
+# #   manifest = provider::kubernetes::manifest_decode(local.aap_hub)
+# # }
 
+# removed {
+#   from = kubernetes_manifest.aap-hub
 
-# Ansible Automation Hub
-# resource "kubernetes_manifest" "aap-hub" {
-# depends_on = [ kubernetes_manifest.aap-subscription ]
-#   manifest = provider::kubernetes::manifest_decode(local.aap_hub)
+#   lifecycle {
+#     destroy = false
+#   }
 # }
-
-removed {
-  from = kubernetes_manifest.aap-hub
-
-  lifecycle {
-    destroy = false
-  }
-}
