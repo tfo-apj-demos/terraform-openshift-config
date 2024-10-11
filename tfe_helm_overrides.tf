@@ -65,20 +65,30 @@ data "kubernetes_secret" "redis" {
   }
 }
 
-resource "kubernetes_secret" "tfe-secrets" {
-  depends_on = [ kubernetes_manifest.s3bucket-tfeapp ]
-  metadata {
-    name = "tfe-secrets"
-    namespace = "tfe"
-  }
 
-  data = {
-    TFE_LICENSE: var.tfe_license
-    TFE_ENCRYPTION_PASSWORD: var.tfe_encryption_password
-    TFE_DATABASE_PASSWORD: "${data.kubernetes_secret.postgres.data.password}"
-    TFE_REDIS_PASSWORD: data.kubernetes_secret.redis.data.redis-password
-    TFE_OBJECT_STORAGE_S3_ACCESS_KEY_ID: data.kubernetes_secret.s3.data.AWS_ACCESS_KEY_ID
-    TFE_OBJECT_STORAGE_S3_SECRET_ACCESS_KEY: data.kubernetes_secret.s3.data.AWS_SECRET_ACCESS_KEY
-  }
+removed {
+  from = kubernetes_secret.tfe-secrets
 
+  lifecycle {
+    destroy = false
+  }
 }
+
+
+# resource "kubernetes_secret" "tfe-secrets" {
+#   depends_on = [ kubernetes_manifest.s3bucket-tfeapp ]
+#   metadata {
+#     name = "tfe-secrets"
+#     namespace = "tfe"
+#   }
+
+#   data = {
+#     TFE_LICENSE: var.tfe_license
+#     TFE_ENCRYPTION_PASSWORD: var.tfe_encryption_password
+#     TFE_DATABASE_PASSWORD: "${data.kubernetes_secret.postgres.data.password}"
+#     TFE_REDIS_PASSWORD: data.kubernetes_secret.redis.data.redis-password
+#     TFE_OBJECT_STORAGE_S3_ACCESS_KEY_ID: data.kubernetes_secret.s3.data.AWS_ACCESS_KEY_ID
+#     TFE_OBJECT_STORAGE_S3_SECRET_ACCESS_KEY: data.kubernetes_secret.s3.data.AWS_SECRET_ACCESS_KEY
+#   }
+
+# }

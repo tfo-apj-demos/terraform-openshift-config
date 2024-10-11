@@ -21,12 +21,6 @@ resource "kubernetes_manifest" "pg-operator" {
   manifest = provider::kubernetes::manifest_decode(local.pg_subscription)
 }
 
-# resource "kubernetes_manifest" "pg-scc" {
-#   depends_on = [ kubernetes_namespace.tfe ]
-#   manifest = provider::kubernetes::manifest_decode(local.pg_scc)
-# }
-
-
 
 
 resource "kubernetes_manifest" "postgres-operatorgroup" {
