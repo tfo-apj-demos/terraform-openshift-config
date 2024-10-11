@@ -38,9 +38,25 @@ depends_on = [ kubernetes_manifest.aap-subscription ]
   manifest = provider::kubernetes::manifest_decode(local.aap_eda)
 }
 
+removed {
+  from = kubernetes_manifest.aap-eda
+
+  lifecycle {
+    destroy = false
+  }
+}
+
 
 # Ansible Automation Hub
 resource "kubernetes_manifest" "aap-hub" {
 depends_on = [ kubernetes_manifest.aap-subscription ]
   manifest = provider::kubernetes::manifest_decode(local.aap_hub)
+}
+
+removed {
+  from = kubernetes_manifest.aap-hub
+
+  lifecycle {
+    destroy = false
+  }
 }
