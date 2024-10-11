@@ -26,11 +26,19 @@ depends_on = [ kubernetes_namespace.aap ]
   manifest = provider::kubernetes::manifest_decode(local.aap_subscription)
 }
 
-# Ansible Controller resource
-resource "kubernetes_manifest" "aap-controller" {
-depends_on = [ kubernetes_manifest.aap-subscription ]
-  manifest = provider::kubernetes::manifest_decode(local.aap_controller)
+removed {
+  from = kubernetes_manifest.aap-controller
+
+  lifecycle {
+    destroy = false
+  }
 }
+
+# Ansible Controller resource
+# resource "kubernetes_manifest" "aap-controller" {
+# depends_on = [ kubernetes_manifest.aap-subscription ]
+#   manifest = provider::kubernetes::manifest_decode(local.aap_controller)
+# }
 
 # Ansible EDA resource
 # resource "kubernetes_manifest" "aap-eda" {
