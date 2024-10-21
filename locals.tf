@@ -21,6 +21,9 @@ aap_eda = file("${path.module}/manifests/ansible/aap-eda.yaml")
 # AWX
 awx = file("${path.module}/manifests/awx/kustomization-awx.yaml")
 
+# EDA
+eda = file("${path.module}/manifests/eda/kustomization-eda.yaml")
+
 # Vault
 vault_operator = file("${path.module}/manifests/vault/vault-operator-subscription.yaml")
 vaultauth_sa = file("${path.module}/manifests/vault/vaultauth-sa.yaml")
