@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app.kubernetes.io/component: eda-manager
+    app.kubernetes.io/created-by: eda-server-operator
+    app.kubernetes.io/instance: system
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: namespace
+    app.kubernetes.io/part-of: eda-server-operator
+    control-plane: controller-manager
+  name: eda-server-operator-system

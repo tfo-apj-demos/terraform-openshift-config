@@ -23,6 +23,7 @@ aap_eda = file("${path.module}/manifests/ansible/aap-eda.yaml")
 
 # EDA
 eda = file("${path.module}/manifests/eda/eda-operator.yaml")
+eda_namespace = file("${path.module}/manifests/eda/eda-namespace.yaml")
 
 # Vault
 vault_operator = file("${path.module}/manifests/vault/vault-operator-subscription.yaml")
