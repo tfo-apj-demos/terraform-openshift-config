@@ -12,7 +12,17 @@
 # }
 
 # AWX
+
+locals {
+  eda_manifests = provider::kubernetes::manifest_decode_multi(local.eda)
+}
+
+# resource "kubernetes_manifest" "eda" {
+#   manifest = provider::kubernetes::manifest_decode_multi(local.eda)
+# }
+
 resource "kubernetes_manifest" "eda" {
-    depends_on = [ kubernetes_namespace.eda ]
-  manifest = provider::kubernetes::manifest_decode_multi(local.eda)
+  for_each = { for idx, manifest in local.eda_manifests : idx => manifest }
+
+  manifest = each.value
 }
