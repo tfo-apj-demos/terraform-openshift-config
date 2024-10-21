@@ -19,10 +19,10 @@ aap_hub= file("${path.module}/manifests/ansible/aap-hub.yaml")
 aap_eda = file("${path.module}/manifests/ansible/aap-eda.yaml")
 
 # AWX
-awx = file("${path.module}/manifests/awx/kustomization-awx.yaml")
+# awx = file("${path.module}/manifests/awx/kustomization-awx.yaml")
 
 # EDA
-eda = file("${path.module}/manifests/eda/kustomization-eda.yaml")
+eda = file("${path.module}/manifests/eda/eda-operator.yaml")
 
 # Vault
 vault_operator = file("${path.module}/manifests/vault/vault-operator-subscription.yaml")
