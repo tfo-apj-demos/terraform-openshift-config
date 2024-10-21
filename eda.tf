@@ -26,7 +26,7 @@ locals {
 resource "kubernetes_manifest" "eda" {
   for_each = {
     for manifest in local.eda_manifests :
-    "${manifest.kind}-${manifest.metadata.namespace}-${manifest.metadata.name}" => manifest
+    "${manifest.kind}-${manifest.metadata.name}" => manifest
   }
 
   manifest = each.value
