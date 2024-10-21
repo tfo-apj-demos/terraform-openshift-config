@@ -22,7 +22,7 @@ locals {
 # }
 
 resource "kubernetes_manifest" "eda" {
-  for_each = { for idx, manifest in local.eda_manifests : idx => manifest }
+  for_each = { for idx, manifest in local.eda_manifests : idx => manifest.metadata.name }
 
   manifest = each.value
 }
