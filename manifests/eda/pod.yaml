@@ -1,0 +1,549 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    checksum-configmaps-config: f561cc65d89b4e3678076eccafe63ac9
+    checksum-configmaps-pre_stop_scripts: 68b329da9893e34099c7d8ad5cb9c940
+    checksum-secret-bundle_cacert: d41d8cd98f00b204e9800998ecf8427e
+    checksum-secret-ldap_cacert: d41d8cd98f00b204e9800998ecf8427e
+    checksum-secret-receptor_ca: c7ec6fdf05015060326531828137b87e
+    checksum-secret-receptor_work_signing: 003adfe11de5519ce880b93a4ee7f553
+    checksum-secret-route_tls: d41d8cd98f00b204e9800998ecf8427e
+    checksum-secret-secret_key: dcec93d5ddd884a459d3960523e8d1a2
+    checksum-secrets-app_credentials: 19f6d402332a9802d70476db972e922a
+    checksum-storage-persistent: 68b329da9893e34099c7d8ad5cb9c940
+    k8s.ovn.org/pod-networks: '{"default":{"ip_addresses":["10.130.1.254/23"],"mac_address":"0a:58:0a:82:01:fe","gateway_ips":["10.130.0.1"],"routes":[{"dest":"10.128.0.0/14","nextHop":"10.130.0.1"},{"dest":"172.30.0.0/16","nextHop":"10.130.0.1"},{"dest":"100.64.0.0/16","nextHop":"10.130.0.1"}],"ip_address":"10.130.1.254/23","gateway_ip":"10.130.0.1"}}'
+    k8s.v1.cni.cncf.io/network-status: |-
+      [{
+          "name": "ovn-kubernetes",
+          "interface": "eth0",
+          "ips": [
+              "10.130.1.254"
+          ],
+          "mac": "0a:58:0a:82:01:fe",
+          "default": true,
+          "dns": {}
+      }]
+    openshift.io/scc: restricted-v2
+    seccomp.security.alpha.kubernetes.io/pod: runtime/default
+  creationTimestamp: "2024-10-21T06:04:50Z"
+  generateName: awx-867cd4678c-
+  labels:
+    app.kubernetes.io/component: awx
+    app.kubernetes.io/managed-by: awx-operator
+    app.kubernetes.io/name: awx
+    app.kubernetes.io/operator-version: 1.3.0
+    app.kubernetes.io/part-of: awx
+    app.kubernetes.io/version: 21.13.0
+    pod-template-hash: 867cd4678c
+  name: awx-867cd4678c-hvdvf
+  namespace: awx
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: awx-867cd4678c
+    uid: 7c0f9c6c-e171-44cc-ad2d-f866026b2d2e
+  resourceVersion: "50415699"
+  uid: e0bfa638-c9ad-4e40-8f83-e2abcef38fec
+spec:
+  containers:
+  - args:
+    - redis-server
+    - /etc/redis.conf
+    image: docker.io/redis:7
+    imagePullPolicy: IfNotPresent
+    name: redis
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      runAsNonRoot: true
+      runAsUser: 1000790000
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /etc/redis.conf
+      name: awx-redis-config
+      readOnly: true
+      subPath: redis.conf
+    - mountPath: /var/run/redis
+      name: awx-redis-socket
+    - mountPath: /data
+      name: awx-redis-data
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-lxfvs
+      readOnly: true
+  - args:
+    - /usr/bin/launch_awx.sh
+    env:
+    - name: MY_POD_NAMESPACE
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.namespace
+    - name: UWSGI_MOUNT_PATH
+      value: /
+    image: quay.io/ansible/awx:21.13.0
+    imagePullPolicy: IfNotPresent
+    name: awx-web
+    ports:
+    - containerPort: 8052
+      protocol: TCP
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      runAsNonRoot: true
+      runAsUser: 1000790000
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /etc/tower/conf.d/execution_environments.py
+      name: awx-application-credentials
+      readOnly: true
+      subPath: execution_environments.py
+    - mountPath: /etc/tower/conf.d/credentials.py
+      name: awx-application-credentials
+      readOnly: true
+      subPath: credentials.py
+    - mountPath: /etc/tower/conf.d/ldap.py
+      name: awx-application-credentials
+      readOnly: true
+      subPath: ldap.py
+    - mountPath: /etc/tower/SECRET_KEY
+      name: awx-secret-key
+      readOnly: true
+      subPath: SECRET_KEY
+    - mountPath: /etc/tower/settings.py
+      name: awx-settings
+      readOnly: true
+      subPath: settings.py
+    - mountPath: /etc/nginx/nginx.conf
+      name: awx-nginx-conf
+      readOnly: true
+      subPath: nginx.conf
+    - mountPath: /var/run/redis
+      name: awx-redis-socket
+    - mountPath: /var/run/supervisor
+      name: supervisor-socket
+    - mountPath: /var/run/awx-rsyslog
+      name: rsyslog-socket
+    - mountPath: /var/lib/awx/rsyslog
+      name: rsyslog-dir
+    - mountPath: /var/lib/awx/projects
+      name: awx-projects
+    - mountPath: /etc/receptor/signing/work-public-key.pem
+      name: awx-receptor-work-signing
+      readOnly: true
+      subPath: work-public-key.pem
+    - mountPath: /etc/receptor/tls/ca/receptor-ca.crt
+      name: awx-receptor-ca
+      readOnly: true
+      subPath: tls.crt
+    - mountPath: /etc/receptor/tls/ca/receptor-ca.key
+      name: awx-receptor-ca
+      readOnly: true
+      subPath: tls.key
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-lxfvs
+      readOnly: true
+  - args:
+    - /usr/bin/launch_awx_task.sh
+    env:
+    - name: SUPERVISOR_WEB_CONFIG_PATH
+      value: /etc/supervisord.conf
+    - name: AWX_SKIP_MIGRATIONS
+      value: "1"
+    - name: MY_POD_UID
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.uid
+    - name: MY_POD_IP
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: status.podIP
+    - name: MY_POD_NAMESPACE
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.namespace
+    image: quay.io/ansible/awx:21.13.0
+    imagePullPolicy: IfNotPresent
+    name: awx-task
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      runAsNonRoot: true
+      runAsUser: 1000790000
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /etc/tower/conf.d/execution_environments.py
+      name: awx-application-credentials
+      readOnly: true
+      subPath: execution_environments.py
+    - mountPath: /etc/tower/conf.d/credentials.py
+      name: awx-application-credentials
+      readOnly: true
+      subPath: credentials.py
+    - mountPath: /etc/tower/conf.d/ldap.py
+      name: awx-application-credentials
+      readOnly: true
+      subPath: ldap.py
+    - mountPath: /etc/tower/SECRET_KEY
+      name: awx-secret-key
+      readOnly: true
+      subPath: SECRET_KEY
+    - mountPath: /etc/tower/settings.py
+      name: awx-settings
+      readOnly: true
+      subPath: settings.py
+    - mountPath: /var/run/redis
+      name: awx-redis-socket
+    - mountPath: /var/run/supervisor
+      name: supervisor-socket
+    - mountPath: /var/run/awx-rsyslog
+      name: rsyslog-socket
+    - mountPath: /var/lib/awx/rsyslog
+      name: rsyslog-dir
+    - mountPath: /etc/receptor/
+      name: awx-receptor-config
+    - mountPath: /etc/receptor/signing/work-private-key.pem
+      name: awx-receptor-work-signing
+      readOnly: true
+      subPath: work-private-key.pem
+    - mountPath: /var/run/receptor
+      name: receptor-socket
+    - mountPath: /var/lib/awx/projects
+      name: awx-projects
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-lxfvs
+      readOnly: true
+  - args:
+    - /bin/sh
+    - -c
+    - |
+      if [ ! -f /etc/receptor/receptor.conf ]; then
+        cp /etc/receptor/receptor-default.conf /etc/receptor/receptor.conf
+        sed -i "s/HOSTNAME/$HOSTNAME/g" /etc/receptor/receptor.conf
+      fi
+      exec receptor --config /etc/receptor/receptor.conf
+    image: quay.io/ansible/awx-ee:latest
+    imagePullPolicy: IfNotPresent
+    name: awx-ee
+    resources:
+      requests:
+        cpu: 100m
+        memory: 64Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      runAsNonRoot: true
+      runAsUser: 1000790000
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /etc/receptor/receptor-default.conf
+      name: awx-default-receptor-config
+      subPath: receptor.conf
+    - mountPath: /etc/receptor/
+      name: awx-receptor-config
+    - mountPath: /etc/receptor/tls/ca/receptor-ca.crt
+      name: awx-receptor-ca
+      readOnly: true
+      subPath: tls.crt
+    - mountPath: /etc/receptor/signing/work-private-key.pem
+      name: awx-receptor-work-signing
+      readOnly: true
+      subPath: work-private-key.pem
+    - mountPath: /etc/receptor/tls/
+      name: awx-receptor-tls
+    - mountPath: /var/run/receptor
+      name: receptor-socket
+    - mountPath: /var/lib/awx/projects
+      name: awx-projects
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-lxfvs
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  initContainers:
+  - command:
+    - /bin/sh
+    - -c
+    - |
+      hostname=$MY_POD_NAME
+      receptor --cert-makereq bits=2048 commonname=$hostname dnsname=$hostname nodeid=$hostname outreq=/etc/receptor/tls/receptor.req outkey=/etc/receptor/tls/receptor.key
+      receptor --cert-signreq req=/etc/receptor/tls/receptor.req cacert=/etc/receptor/tls/ca/receptor-ca.crt cakey=/etc/receptor/tls/ca/receptor-ca.key outcert=/etc/receptor/tls/receptor.crt verify=yes
+    env:
+    - name: MY_POD_NAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.name
+    image: quay.io/ansible/awx-ee:latest
+    imagePullPolicy: IfNotPresent
+    name: init
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      runAsNonRoot: true
+      runAsUser: 1000790000
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /etc/receptor/tls/ca/receptor-ca.crt
+      name: awx-receptor-ca
+      readOnly: true
+      subPath: tls.crt
+    - mountPath: /etc/receptor/tls/ca/receptor-ca.key
+      name: awx-receptor-ca
+      readOnly: true
+      subPath: tls.key
+    - mountPath: /etc/receptor/tls/
+      name: awx-receptor-tls
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-lxfvs
+      readOnly: true
+  nodeName: 00-50-56-9b-67-28
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    fsGroup: 1000790000
+    seLinuxOptions:
+      level: s0:c28,c17
+    seccompProfile:
+      type: RuntimeDefault
+  serviceAccount: awx
+  serviceAccountName: awx
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoSchedule
+    key: node.kubernetes.io/memory-pressure
+    operator: Exists
+  volumes:
+  - name: awx-application-credentials
+    secret:
+      defaultMode: 420
+      items:
+      - key: credentials.py
+        path: credentials.py
+      - key: ldap.py
+        path: ldap.py
+      - key: execution_environments.py
+        path: execution_environments.py
+      secretName: awx-app-credentials
+  - emptyDir: {}
+    name: awx-receptor-tls
+  - name: awx-receptor-ca
+    secret:
+      defaultMode: 420
+      secretName: awx-receptor-ca
+  - name: awx-receptor-work-signing
+    secret:
+      defaultMode: 420
+      secretName: awx-receptor-work-signing
+  - name: awx-secret-key
+    secret:
+      defaultMode: 420
+      items:
+      - key: secret_key
+        path: SECRET_KEY
+      secretName: awx-secret-key
+  - configMap:
+      defaultMode: 420
+      items:
+      - key: settings
+        path: settings.py
+      name: awx-awx-configmap
+    name: awx-settings
+  - configMap:
+      defaultMode: 420
+      items:
+      - key: nginx_conf
+        path: nginx.conf
+      name: awx-awx-configmap
+    name: awx-nginx-conf
+  - configMap:
+      defaultMode: 420
+      items:
+      - key: redis_conf
+        path: redis.conf
+      name: awx-awx-configmap
+    name: awx-redis-config
+  - emptyDir: {}
+    name: awx-redis-socket
+  - emptyDir: {}
+    name: awx-redis-data
+  - emptyDir: {}
+    name: supervisor-socket
+  - emptyDir: {}
+    name: rsyslog-socket
+  - emptyDir: {}
+    name: receptor-socket
+  - emptyDir: {}
+    name: rsyslog-dir
+  - emptyDir: {}
+    name: awx-receptor-config
+  - configMap:
+      defaultMode: 420
+      items:
+      - key: receptor_conf
+        path: receptor.conf
+      name: awx-awx-configmap
+    name: awx-default-receptor-config
+  - emptyDir: {}
+    name: awx-projects
+  - name: kube-api-access-lxfvs
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+      - configMap:
+          items:
+          - key: service-ca.crt
+            path: service-ca.crt
+          name: openshift-service-ca.crt
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2024-10-21T06:05:18Z"
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2024-10-21T06:05:18Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2024-10-21T06:05:42Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2024-10-21T06:05:42Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2024-10-21T06:04:50Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: cri-o://34cf48875473a296f1fc42edbf857ade31ed46c4bf1aa762415c33158fff2048
+    image: quay.io/ansible/awx-ee:latest
+    imageID: quay.io/ansible/awx-ee@sha256:2183ad970472344e451cf83bd670102e150868d92d34b2da59046298375b8335
+    lastState: {}
+    name: awx-ee
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-10-21T06:05:41Z"
+  - containerID: cri-o://10a2563013d7c06021465e51a09558cb1929a91d35e44059591f0b22935b0cee
+    image: quay.io/ansible/awx:21.13.0
+    imageID: quay.io/ansible/awx@sha256:111c5acb675f2e156d99e6ddfbaeb0b482a2fe37e7a28e6d9ffcacb0141620c9
+    lastState: {}
+    name: awx-task
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-10-21T06:05:41Z"
+  - containerID: cri-o://414b7925a1732ceae05d163ccd01919bb121c32646b1115989b932b411eecfe5
+    image: quay.io/ansible/awx:21.13.0
+    imageID: quay.io/ansible/awx@sha256:111c5acb675f2e156d99e6ddfbaeb0b482a2fe37e7a28e6d9ffcacb0141620c9
+    lastState: {}
+    name: awx-web
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-10-21T06:05:41Z"
+  - containerID: cri-o://755ba95065c970fca0c24af3afb3507d99642fd0a8142195c3a47f623a33b972
+    image: docker.io/library/redis:7
+    imageID: docker.io/library/redis@sha256:a06cea905344470eb49c972f3d030e22f28f632c1b4f43bbe4a26a4329dd6be5
+    lastState: {}
+    name: redis
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-10-21T06:05:25Z"
+  hostIP: 172.21.13.13
+  hostIPs:
+  - ip: 172.21.13.13
+  initContainerStatuses:
+  - containerID: cri-o://a353dcdd7815cff21f5fee6f27f68bd3ab0b3606445e8574fce0a7abb9b1f235
+    image: quay.io/ansible/awx-ee:latest
+    imageID: quay.io/ansible/awx-ee@sha256:2183ad970472344e451cf83bd670102e150868d92d34b2da59046298375b8335
+    lastState: {}
+    name: init
+    ready: true
+    restartCount: 0
+    started: false
+    state:
+      terminated:
+        containerID: cri-o://a353dcdd7815cff21f5fee6f27f68bd3ab0b3606445e8574fce0a7abb9b1f235
+        exitCode: 0
+        finishedAt: "2024-10-21T06:05:17Z"
+        reason: Completed
+        startedAt: "2024-10-21T06:05:17Z"
+  phase: Running
+  podIP: 10.130.1.254
+  podIPs:
+  - ip: 10.130.1.254
+  qosClass: Burstable
+  startTime: "2024-10-21T06:04:50Z"
