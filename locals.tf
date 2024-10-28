@@ -13,10 +13,6 @@ tfe_s3bucket_tfeapp = file("${path.module}/manifests/tfe/s3bucket-tfeapp.yaml")
 aap_subscription = file("${path.module}/manifests/ansible/ansible-app-subscription.yaml")
 aap_operatorgroup = file("${path.module}/manifests/ansible/ansible-operatorgroup.yaml")
 
-# Ansible Automation Platform
-aap_controller = file("${path.module}/manifests/ansible/aap-controller.yaml")
-aap_hub= file("${path.module}/manifests/ansible/aap-hub.yaml")
-aap_eda = file("${path.module}/manifests/ansible/aap-eda.yaml")
 
 # AWX
 # awx = file("${path.module}/manifests/awx/kustomization-awx.yaml")
