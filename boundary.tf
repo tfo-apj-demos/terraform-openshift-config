@@ -16,7 +16,7 @@ module "openshift_console_target" {
 }
 
 # Oauth Target for Openshift Console
-module "openshift_console_target" {
+module "oauth_target" {
   source               = "github.com/tfo-apj-demos/terraform-boundary-target-refactored"
 
   project_name         = "gcve_admins"
