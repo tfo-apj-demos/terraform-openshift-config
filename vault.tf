@@ -62,12 +62,3 @@ resource "kubernetes_manifest" "vault-auth-crd" {
 resource "kubernetes_manifest" "pki-tfe-crd" {
   manifest = provider::kubernetes::manifest_decode(local.tfe_pkicert)
 }
-
-
-# resource "kubernetes_secret" "pki-tfecert" {
-#   metadata {
-#     name      = "tfe-certificate"
-#     namespace = "tfe"
-#   }
-#   type = "kubernetes.io/tls"
-# }

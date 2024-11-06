@@ -36,24 +36,6 @@ resource "kubernetes_manifest" "pg-cluster" {
   
 }
 
-# resource "kubernetes_manifest" "redis-cluster" {
-#   depends_on = [ kubernetes_manifest.redis-operator ]
-
-#   manifest = provider::kubernetes::manifest_decode(local.redis_cluster)
-#   field_manager {
-#     force_conflicts = true
-#   }
-# }
-
-# resource "kubernetes_manifest" "redis-db" {
-#   depends_on = [ kubernetes_manifest.redis-operator ]
-
-#   manifest = provider::kubernetes::manifest_decode(local.redis_db)
-#   field_manager {
-#     force_conflicts = true
-#   }
-# }
-
 
 
 resource "kubernetes_manifest" "s3bucket-tfeapp" {
@@ -90,22 +72,6 @@ removed {
   }
 }
 
-# # deploy tfe using helm chart
-# resource "helm_release" "tfe" {
-#   name       = "terraform-enterprise"
-#   repository = "https://helm.releases.hashicorp.com"
-#   chart      = "terraform-enterprise"
-#   version    = "1.3.2"
-#   create_namespace = false
-#   namespace = "tfe"
-#   wait = false
-#   force_update = true
-
-#   values = [
-#     local.tfe_helm_values
-#   ]
-
-# }
 
 resource "kubernetes_secret" "operator" {
   metadata {
