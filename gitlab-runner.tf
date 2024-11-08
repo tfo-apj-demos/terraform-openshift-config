@@ -20,6 +20,6 @@ resource "kubernetes_manifest" "gitlab_runner_operator_subscription" {
 }
 
 # OperatorGroup resource
-resource "kubernetes_manifest" "gitlab_runner_operatorgroup" {
-  manifest = provider::kubernetes::manifest_decode(local.gitlab_runner_operatorgroup)
-}
+# resource "kubernetes_manifest" "gitlab_runner_operatorgroup" {
+#   manifest = provider::kubernetes::manifest_decode(local.gitlab_runner_operatorgroup)
+# }
