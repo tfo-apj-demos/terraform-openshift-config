@@ -1,6 +1,6 @@
 resource "kubernetes_namespace" "gitlab-runner" {
   metadata {
-    name = "gitlab-runne"
+    name = "gitlab-runner"
   }
   
   lifecycle{
