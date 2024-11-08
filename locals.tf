@@ -29,6 +29,11 @@ vaultauth_rolebinding = file("${path.module}/manifests/vault/vaultauth-rolebindi
 
 vault_connection = file("${path.module}/manifests/vault/crd-vault-connection.yaml")
 vault_auth = file("${path.module}/manifests/vault/crd-vault-auth.yaml")
+
 #tfe cert
 tfe_pkicert = file("${path.module}/manifests/vault/crd-pki-tfecert.yaml")
+
+# Gitlab Runner
+gitlab_runner_subscription = file("${path.module}/manifests/gitlab-runner/gitlab-runner-subscription.yaml")
+gitlab_runner_operatorgroup = file("${path.module}/manifests/gitlab-runner/gitlab-runner-operatorgroup.yaml")
 }
