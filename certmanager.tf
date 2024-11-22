@@ -1,6 +1,6 @@
 locals {  
   certmanager_operatorgroup = file("${path.module}/manifests/cert-manager/certmanager-operatorgroup.yaml")
-  certmanager_subscription = file("${path.module}manifests/cert-manager/certmanager-subscription.yaml")
+  certmanager_subscription = file("${path.module}/manifests/cert-manager/certmanager-subscription.yaml")
 }
 
 resource "kubernetes_namespace" "certmanager" {

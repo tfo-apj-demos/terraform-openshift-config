@@ -1,6 +1,6 @@
 locals {  
   gitlab_operatorgroup = file("${path.module}/manifests/gitlab/gitlab-operatorgroup.yaml")
-  gitlab_subscription = file("${path.module}manifests/gitlab/gitlab-subscription.yaml")
+  gitlab_subscription = file("${path.module}/manifests/gitlab/gitlab-subscription.yaml")
 }
 
 resource "kubernetes_namespace" "gitlab" {
