@@ -1,8 +1,8 @@
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  name: gitlab-operator
-  namespace: gitlab
+  name: global-operators
+  namespace: openshift-operators
 spec:
   targetNamespaces:
-    - gitlab
+    - openshift-operators
