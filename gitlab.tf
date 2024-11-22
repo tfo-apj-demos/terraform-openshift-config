@@ -20,10 +20,12 @@ resource "kubernetes_namespace" "gitlab" {
 
 
 resource "kubernetes_manifest" "gitlab_subscription" {
+  depends_on = [ resource.kubernetes_namespace.gitlab ]
   manifest = provider::kubernetes::manifest_decode(local.gitlab_subscription)
 }
 
 # Subscription resource
 resource "kubernetes_manifest" "gitlab_operatorgroup" {
+  depends_on = [ resource.kubernetes_namespace.gitlab ]
   manifest = provider::kubernetes::manifest_decode(local.gitlab_operatorgroup)
 }
