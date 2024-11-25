@@ -5,7 +5,7 @@ metadata:
   namespace: gitlab
 spec:
   channel: stable
-  name: gitlab-runner-operator
+  name: gitlab-operator-kubernetes
   source: certified-operators
   sourceNamespace: openshift-marketplace
   startingCSV: gitlab-operator-kubernetes.v1.7.0
