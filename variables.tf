@@ -20,8 +20,19 @@ variable "cluster_ca_certificate" {
 }
 
 variable "boundary_address" {
-  description = "The address of the Boundary server."
-  type        = string
+  type = string
+}
+
+variable "service_account_authmethod_id" {
+  type = string
+}
+
+variable "service_account_name" {
+  type = string
+}
+
+variable "service_account_password" {
+  type = string
 }
 
 variable "create_helm_overrides_file" {
