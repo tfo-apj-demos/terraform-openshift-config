@@ -48,3 +48,20 @@ module "api_target" {
   # Alias name for accessing the Openshift API
   alias_name           = "api.openshift-01.hashicorp.local"
 }
+
+# API Target for Openshift
+module "openshift_app_target" {
+  source               = "github.com/tfo-apj-demos/terraform-boundary-target-refactored"
+
+  project_name         = "gcve_admins"
+  target_name          = "apps for OpenShift"
+  hosts                = ["*.apps.openshift-01.hashicorp.local"]
+  port                 = *
+  target_type          = "tcp"
+
+  # Vault credential configurations
+  use_credentials      = false
+
+  # Alias name for accessing the Openshift API
+  alias_name           = "*.apps.openshift-01.hashicorp.local"
+}
