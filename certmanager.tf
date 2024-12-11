@@ -14,6 +14,7 @@ resource "kubernetes_namespace" "certmanager" {
         metadata.0.annotations["openshift.io/sa.scc.mcs"],
         metadata.0.annotations["openshift.io/sa.scc.supplemental-groups"],
         metadata.0.annotations["openshift.io/sa.scc.uid-range"],
+        metadata.0.labels
     ]
     }
 }
