@@ -5,7 +5,7 @@ metadata:
   namespace: rhdh-operator
 spec:
   channel: fast
-  name: ansible-automation-platform-operator
+  name: rhdh
   source: redhat-operators
   sourceNamespace: openshift-marketplace
   startingCSV: rhdh-operator.v1.3.1
