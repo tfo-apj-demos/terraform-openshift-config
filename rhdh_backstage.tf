@@ -1,6 +1,6 @@
 locals {
-  rhdh_operator_group = file("${path.module}/backstage/rhdh-operatorgroup.yaml")
-  rhdh_operator_subscription = file("${path.module}/backstage/rhdh-subscription.yaml")
+  rhdh_operator_group = file("${path.module}/manifests/backstage/rhdh-operatorgroup.yaml")
+  rhdh_operator_subscription = file("${path.module}/manifests/backstage/rhdh-subscription.yaml")
 }
 
 
