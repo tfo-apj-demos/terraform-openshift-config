@@ -93,10 +93,7 @@ resource "helm_release" "operator1" {
   version    = "2.8.0"
   namespace  = "tfe"
   # add values tfeAddress
-  set = [
-    {
-      name  = "tfeAddress"
-      value = "tfe.hashicorp.local"
-    }
+  values = [
+    file("${path.module}/manifests/tfe/values.yaml")
   ]
 }
