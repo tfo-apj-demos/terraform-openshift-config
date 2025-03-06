@@ -58,5 +58,4 @@ variable "hcp_operator_token" {
   description = "The HCP operator token."
   type        = string
   sensitive = true
-  default = "dummy"
 }
