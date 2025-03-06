@@ -53,3 +53,10 @@ variable "tfe_encryption_password" {
   sensitive = true
   default = "terraformenterprise"
 }
+
+variable "hcp_operator_token" {
+  description = "The HCP operator token."
+  type        = string
+  sensitive = true
+  default = "dummy"
+}

@@ -80,7 +80,7 @@ resource "kubernetes_secret" "operator" {
   }
 
   data = {
-    token = "dummy"#to be updated
+    token = var.hcp_operator_token
   }
 }
 
@@ -90,7 +90,7 @@ resource "helm_release" "operator" {
   name       = "hcp-terraform-operator"
   repository = "https://helm.releases.hashicorp.com"
   chart      = "hcp-terraform-operator"
-  version    = "2.6.1"
+  version    = "2.8.0"
   namespace  = "tfe"
 
 }
