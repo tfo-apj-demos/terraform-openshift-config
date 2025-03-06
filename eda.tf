@@ -7,7 +7,7 @@ resource "kubernetes_manifest" "eda-namespace" {
 }
 
 resource "kubernetes_manifest" "eda" {
-  depends_on = [ kubernetes_manifest.eda-namespace ]
+  depends_on = [kubernetes_manifest.eda-namespace]
 
   for_each = {
     for manifest in local.eda_manifests :
