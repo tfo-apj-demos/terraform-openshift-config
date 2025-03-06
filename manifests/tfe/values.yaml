@@ -1,4 +1,4 @@
 operator:
-  tfeAddress: "tfe.hashicorp.local"
+  tfeAddress: "https://tfe.hashicorp.local"
   skipTLSVerify: true
   watchedNamespaces: ["tfe"]
