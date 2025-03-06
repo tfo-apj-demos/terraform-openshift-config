@@ -1,2 +1,4 @@
 operator:
   tfeAddress: "tfe.hashicorp.local"
+  skipTLSVerify: true
+  watchedNamespaces: ["tfe"]
