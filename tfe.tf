@@ -85,7 +85,7 @@ resource "kubernetes_secret" "operator" {
 }
 
 # Terraform Cloud Operator for K8s helm chart
-resource "helm_release" "operator" {
+resource "helm_release" "operator1" {
   depends_on = [ kubernetes_namespace.tfe ]
   name       = "hcp-terraform-operator"
   repository = "https://helm.releases.hashicorp.com"
