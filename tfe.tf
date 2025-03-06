@@ -92,5 +92,10 @@ resource "helm_release" "operator" {
   chart      = "hcp-terraform-operator"
   version    = "2.8.0"
   namespace  = "tfe"
-
+  # add values tfeAddress
+  values = [
+    jsonencode({
+      tfeAddress = "tfe.hashicorp.local"
+    })
+  ]
 }
