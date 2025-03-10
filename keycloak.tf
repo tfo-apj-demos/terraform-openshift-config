@@ -14,7 +14,8 @@ resource "kubernetes_namespace" "keycloak" {
     ignore_changes = [
       metadata.0.annotations["openshift.io/sa.scc.mcs"],
       metadata.0.annotations["openshift.io/sa.scc.supplemental-groups"],
-      metadata.0.annotations["openshift.io/sa.scc.uid-range"]
+      metadata.0.annotations["openshift.io/sa.scc.uid-range"],
+      metadata.0.labels["olm.operatorgroup.uid/241f23a1-13e9-429a-a837-da25dd925c57"]
     ]
   }
 }
