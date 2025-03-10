@@ -1,3 +1,4 @@
+# https://www.ibm.com/docs/en/db2-warehouse?topic=operator-installing-from-catalog
 apiVersion: operators.coreos.com/v1alpha1
 kind: CatalogSource
 metadata:
