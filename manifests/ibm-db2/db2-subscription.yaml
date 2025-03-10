@@ -3,7 +3,6 @@ kind: Subscription
 metadata:
   name: ibm-db2uoperator-catalog-subscription
   namespace: db2
-  generation: 1
 spec:
   channel: v120101.0
   name: db2u-operator
