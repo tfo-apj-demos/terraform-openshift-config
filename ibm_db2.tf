@@ -4,6 +4,5 @@ locals {
 }
 
 resource "kubernetes_manifest" "db2_catalog" {
-  for_each = local.db2_catalog
-  manifest = yamldecode(each.value)
+  manifest = provider::kubernetes::manifest_decode(local.db2_catalog)
 }
