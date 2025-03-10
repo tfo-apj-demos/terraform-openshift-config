@@ -4,6 +4,11 @@ provider "tfe" {
     hostname = "tfe.hashicorp.local"
     token    = "aaaaa"
 }
+
+variable "workspace_count" {
+  default = 10
+}
+
 resource "tfe_workspace" "workspaces" {
   count          = var.workspace_count
   name           = "ws${count.index + 1}"
