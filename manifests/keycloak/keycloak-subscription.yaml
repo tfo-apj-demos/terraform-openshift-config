@@ -10,4 +10,4 @@ spec:
   source: redhat-operators
   sourceNamespace: openshift-marketplace
   startingCSV: rhbk-operator.v26.0.9-opr.1
-  installPlanApproval: Manual
+  installPlanApproval: Automatic
