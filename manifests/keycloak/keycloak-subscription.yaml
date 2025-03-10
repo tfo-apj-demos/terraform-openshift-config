@@ -6,7 +6,7 @@ metadata:
   namespace: keycloak
 spec:
   channel: stable-v26.0
-  name: rhbk-operato
+  name: rhbk-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
   startingCSV: rhbk-operator.v22.0.13-opr.1
