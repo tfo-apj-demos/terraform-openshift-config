@@ -9,6 +9,7 @@ resource "kubernetes_namespace" "keycloak" {
   metadata {
     name = "keycloak"
   }
+  
   lifecycle {
     ignore_changes = [
       metadata.0.annotations["openshift.io/sa.scc.mcs"],
