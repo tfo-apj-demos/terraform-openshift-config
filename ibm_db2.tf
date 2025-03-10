@@ -14,7 +14,8 @@ resource "kubernetes_namespace" "db2" {
     ignore_changes = [
       metadata.0.annotations["openshift.io/sa.scc.mcs"],
       metadata.0.annotations["openshift.io/sa.scc.supplemental-groups"],
-      metadata.0.annotations["openshift.io/sa.scc.uid-range"]
+      metadata.0.annotations["openshift.io/sa.scc.uid-range"],
+      metadata.0.labels["olm.operatorgroup.uid/46b7a13f-e405-417b-b4fb-0cbfe8de61aa"]
     ]
   }
   
