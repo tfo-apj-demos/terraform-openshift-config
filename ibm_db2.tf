@@ -7,7 +7,7 @@ locals {
 
 resource "kubernetes_namespace" "db2u" {
   metadata {
-    name = "db2u"
+    name = "db2"
   }
 }
 
