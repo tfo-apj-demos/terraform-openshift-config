@@ -1,0 +1,1 @@
+# oc get packagemanifests rhbk-operator -o yaml
