@@ -24,4 +24,7 @@ resource "kubernetes_manifest" "aap-operatorgroup" {
 resource "kubernetes_manifest" "aap-subscription" {
   depends_on = [kubernetes_namespace.aap]
   manifest   = provider::kubernetes::manifest_decode(local.aap_subscription)
+  field_manager {
+    force_conflicts = true
+  }
 }
