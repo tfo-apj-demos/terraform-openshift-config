@@ -4,7 +4,7 @@ metadata:
   name: ansible-automation-platform-operator
   namespace: aap
 spec:
-  channel: stable-2.5-cluster-scoped
+  channel: stable-2.6-cluster-scoped
   name: ansible-automation-platform-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
