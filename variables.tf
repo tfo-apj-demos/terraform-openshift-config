@@ -65,7 +65,7 @@ variable "oidc_client_id" {
   type        = string
 }
 
-variable "oidc_client_secret" {
+variable "openshift_oidc_client_secret" {
   description = "OIDC Client Secret from HCP Vault for OpenShift OAuth."
   type        = string
   sensitive   = true

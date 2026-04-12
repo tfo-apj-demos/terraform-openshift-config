@@ -7,7 +7,7 @@ resource "kubernetes_secret" "oidc_client_secret" {
   }
 
   data = {
-    clientSecret = var.oidc_client_secret
+    clientSecret = var.openshift_oidc_client_secret
   }
 }
 
