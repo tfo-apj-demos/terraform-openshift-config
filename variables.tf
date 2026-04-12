@@ -59,3 +59,14 @@ variable "hcp_operator_token" {
   type        = string
   sensitive   = true
 }
+
+variable "oidc_client_id" {
+  description = "OIDC Client ID from HCP Vault for OpenShift OAuth."
+  type        = string
+}
+
+variable "oidc_client_secret" {
+  description = "OIDC Client Secret from HCP Vault for OpenShift OAuth."
+  type        = string
+  sensitive   = true
+}
