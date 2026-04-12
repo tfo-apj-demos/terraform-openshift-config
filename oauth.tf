@@ -1,5 +1,11 @@
 # --- OpenShift OAuth configuration with HCP Vault OIDC provider
 
+# The OAuth "cluster" CR is a singleton pre-created by OpenShift — import it.
+import {
+  to = kubernetes_manifest.oauth_cluster
+  id = "apiVersion=config.openshift.io/v1,kind=OAuth,name=cluster"
+}
+
 resource "kubernetes_secret" "oidc_client_secret" {
   metadata {
     name      = "hcp-vault-oidc-client-secret"
