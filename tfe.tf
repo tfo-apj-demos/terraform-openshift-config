@@ -30,11 +30,10 @@ resource "kubernetes_manifest" "postgres-operatorgroup" {
 
 
 
-# Temporarily commented out for fresh redeploy (issue #18)
-# resource "kubernetes_manifest" "pg-cluster" {
-#   depends_on = [kubernetes_manifest.pg-operator]
-#   manifest   = provider::kubernetes::manifest_decode(local.pg_cluster)
-# }
+resource "kubernetes_manifest" "pg-cluster" {
+  depends_on = [kubernetes_manifest.pg-operator]
+  manifest   = provider::kubernetes::manifest_decode(local.pg_cluster)
+}
 
 
 
