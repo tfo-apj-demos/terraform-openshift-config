@@ -9,5 +9,4 @@ spec:
   name: rhbk-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: rhbk-operator.v26.0.9-opr.1
   installPlanApproval: Automatic
