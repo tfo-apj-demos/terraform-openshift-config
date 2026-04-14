@@ -17,9 +17,9 @@ locals {
   # AWX
   # awx = file("${path.module}/manifests/awx/kustomization-awx.yaml")
 
-  # EDA
-  eda           = file("${path.module}/manifests/eda/eda-operator.yaml")
-  eda_namespace = file("${path.module}/manifests/eda/eda-namespace.yaml")
+  # EDA — commented out, EDA is now part of AAP platform (issue #20)
+  # eda           = file("${path.module}/manifests/eda/eda-operator.yaml")
+  # eda_namespace = file("${path.module}/manifests/eda/eda-namespace.yaml")
 
   # Vault
   vault_operator        = file("${path.module}/manifests/vault/vault-operator-subscription.yaml")
