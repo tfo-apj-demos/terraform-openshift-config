@@ -48,8 +48,20 @@ resource "kubernetes_secret" "vault_auth_secret" {
 }
 
 
+# Lab CA (HCP Vault Issuing -> Central Signing -> Root, verified against Vault's
+# live leaf) so the VaultConnection can verify Vault's TLS instead of skipping it.
+resource "kubernetes_secret" "tfe-vault-ca" {
+  metadata {
+    name      = "vault-ca"
+    namespace = "tfe"
+  }
+  data = {
+    "ca.crt" = file("${path.module}/manifests/vault/vault-ca.pem")
+  }
+}
+
 resource "kubernetes_manifest" "vault-connection" {
-  depends_on = [kubernetes_namespace.vault]
+  depends_on = [kubernetes_namespace.vault, kubernetes_secret.tfe-vault-ca]
   manifest   = provider::kubernetes::manifest_decode(local.vault_connection)
 }
 
