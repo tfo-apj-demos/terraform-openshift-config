@@ -13,14 +13,6 @@ locals {
   aap_subscription  = file("${path.module}/manifests/ansible/ansible-app-subscription.yaml")
   aap_operatorgroup = file("${path.module}/manifests/ansible/ansible-operatorgroup.yaml")
 
-
-  # AWX
-  # awx = file("${path.module}/manifests/awx/kustomization-awx.yaml")
-
-  # EDA — commented out, EDA is now part of AAP platform (issue #20)
-  # eda           = file("${path.module}/manifests/eda/eda-operator.yaml")
-  # eda_namespace = file("${path.module}/manifests/eda/eda-namespace.yaml")
-
   # Vault
   vault_operator        = file("${path.module}/manifests/vault/vault-operator-subscription.yaml")
   vaultauth_sa          = file("${path.module}/manifests/vault/vaultauth-sa.yaml")
