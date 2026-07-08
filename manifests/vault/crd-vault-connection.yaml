@@ -4,5 +4,6 @@ metadata:
   name: vaultconnection-gcve
   namespace: tfe
 spec:
-  skipTLSVerify: true
+  skipTLSVerify: false
+  caCertSecretRef: vault-ca
   address: 'https://vault.hashicorp.local:8200'
